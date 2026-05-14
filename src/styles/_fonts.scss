@@ -1,0 +1,35 @@
+@use "sass:string";
+
+// Variables de Polices
+$font-main: 'Creato Display', sans-serif;
+$font-title: 'Toxigenesis', sans-serif;
+
+// Mixin pour simplifier l'inclusion (optionnel mais recommandé)
+@mixin font-face($name, $path, $weight: normal, $style: normal) {
+  @font-face {
+    font-family: string.quote($name);
+    src: url('../assets/fonts/' + $path + '.otf') format('opentype');
+    font-weight: $weight;
+    font-style: $style;
+    font-display: swap;
+  }
+}
+
+// --- Creato Display ---
+@include font-face('Creato Display', 'CreatoDisplay-Black', 900, normal);
+@include font-face('Creato Display', 'CreatoDisplay-BlackItalic', 900, italic);
+@include font-face('Creato Display', 'CreatoDisplay-Bold', 700, normal);
+@include font-face('Creato Display', 'CreatoDisplay-BoldItalic', 700, italic);
+@include font-face('Creato Display', 'CreatoDisplay-ExtraBold', 800, normal);
+@include font-face('Creato Display', 'CreatoDisplay-ExtraBoldItalic', 800, italic);
+@include font-face('Creato Display', 'CreatoDisplay-Light', 300, normal);
+@include font-face('Creato Display', 'CreatoDisplay-LightItalic', 300, italic);
+@include font-face('Creato Display', 'CreatoDisplay-Medium', 500, normal);
+@include font-face('Creato Display', 'CreatoDisplay-MediumItalic', 500, italic);
+@include font-face('Creato Display', 'CreatoDisplay-Regular', 400, normal);
+@include font-face('Creato Display', 'CreatoDisplay-RegularItalic', 400, italic);
+@include font-face('Creato Display', 'CreatoDisplay-Thin', 100, normal);
+@include font-face('Creato Display', 'CreatoDisplay-ThinItalic', 100, italic);
+
+// --- Toxigenesis ---
+@include font-face('Toxigenesis', 'Toxigenesis', 400, normal);
