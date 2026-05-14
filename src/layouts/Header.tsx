@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Logo from '@/assets/Logo.png';
-import CustomSelect, {type Option } from '@/components/CustomSelect';
+import CustomSelect, {type Option } from '../components/CustomSelect/CustomSelect';
 import { useUserPreferences } from '@/store/userPreferences';
 import { useTranslation } from '@/hooks/useTranslation';
 

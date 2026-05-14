@@ -1,0 +1,61 @@
+@use "variables" as *;
+@use "fonts" as *;
+
+.not-found-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    text-align: center;
+    padding: 40px 20px;
+
+    .not-found-content {
+        max-width: 600px;
+
+        h1.gradient-text {
+            font-size: clamp(80px, 15vw, 150px);
+            margin-bottom: -10px;
+            line-height: 1;
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            margin-bottom: 1.5rem;
+            color: $text-color;
+            text-transform: uppercase;
+            font-family: $font-title;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            color: rgba($text-color, 0.8);
+            line-height: 1.6;
+        }
+
+        .home-link {
+            display: inline-block;
+            background: linear-gradient(45deg, #057488, #045663);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+
+            &:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+                opacity: 0.95;
+            }
+
+            &:active {
+                transform: translateY(-1px);
+            }
+        }
+    }
+}

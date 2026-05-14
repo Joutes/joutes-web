@@ -1,11 +1,23 @@
 @use "sass:color";
 @use "fonts" as *;
 @use "variables" as *;
+@use "notfound";
+@use "info-pages";
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+// GLOBAL CLASSES
+.gradient-text {
+  font-family: $font-title;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #08aeca, #045663);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
 }
 
 body {
@@ -58,14 +70,7 @@ body {
     }
 
     .gradient-text {
-      font-family: $font-title;
-      text-transform: uppercase;
       font-size: 24px;
-      /* Le secret du dégradé sur texte */
-      background: linear-gradient(90deg, #08aeca, #045663);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin: 0;
     }
   }
 

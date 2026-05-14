@@ -1,0 +1,257 @@
+@use "variables" as *;
+@use "fonts" as *;
+@use "sass:color";
+
+.info-page {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+
+    .info-container {
+        background: color.adjust($background-color, $lightness: 2%);
+        border-radius: 12px;
+        padding: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .info-header {
+        text-align: center;
+        margin-bottom: 50px;
+
+        h1.gradient-text {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: rgba($text-color, 0.8);
+            font-weight: 500;
+        }
+
+        .last-update {
+            font-size: 0.9rem;
+            color: rgba($text-color, 0.5);
+            font-style: italic;
+        }
+    }
+
+    .info-content {
+        h2 {
+            font-family: $font-title;
+            font-size: 1.8rem;
+            margin: 40px 0 20px 0;
+            color: white;
+            text-transform: uppercase;
+            border-left: 4px solid #08aeca;
+            padding-left: 15px;
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #08aeca;
+        }
+
+        p {
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            color: rgba($text-color, 0.9);
+        }
+
+        .section-subtitle {
+            color: rgba($text-color, 0.6);
+            margin-top: -15px;
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+    }
+
+    // Grid for About page
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 25px;
+        margin: 40px 0;
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, background 0.3s ease;
+
+            svg {
+                float: left;
+                display: block;
+                margin-right: 5px;
+            }
+
+            &:hover {
+                transform: translateY(-5px);
+                background: rgba(255, 255, 255, 0.05);
+            }
+        }
+    }
+
+    .values-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        .value-item {
+            background: rgba(8, 174, 202, 0.05);
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 3px solid #08aeca;
+
+            strong {
+                color: #08aeca;
+            }
+        }
+    }
+
+    .social-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 30px;
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            color: white;
+            transition: all 0.2s ease;
+
+            &.discord { background: #5865F2; }
+            &.github { background: #333; }
+            &.twitter { background: #000; }
+
+            &:hover {
+                filter: brightness(1.1);
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    // Open Source page specific
+    .thanks-box {
+        background: linear-gradient(135deg, rgba(8, 174, 202, 0.1), rgba(4, 86, 99, 0.1));
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        margin: 30px 0;
+        border: 1px solid rgba(8, 174, 202, 0.2);
+
+        h2 { border: none; padding: 0; margin-top: 0; }
+        
+        .github-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            color: black;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 15px;
+            transition: all 0.2s ease;
+
+            &:hover {
+                background: #f0f0f0;
+                transform: translateY(-2px);
+            }
+        }
+    }
+
+    .dependencies-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+        margin-bottom: 40px;
+
+        .dependency-card {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+
+            h3 { font-size: 1.1rem; color: #08aeca; margin-bottom: 8px; }
+            p { font-size: 0.9rem; margin-bottom: 0; opacity: 0.8; }
+
+            &.dev-tool {
+                border-left: 2px solid rgba(255, 255, 255, 0.2);
+            }
+        }
+    }
+
+    .contribute-list {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0;
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            color: rgba($text-color, 0.9);
+
+            i { color: #08aeca; font-size: 1.2rem; }
+        }
+    }
+
+    .contribute-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 25px;
+
+        .contribute-link {
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 4px;
+            
+            &.github { color: white; background: rgba(255, 255, 255, 0.1); }
+            &.discord { color: white; background: rgba(88, 101, 242, 0.2); border: 1px solid #5865F2; }
+
+            &:hover { background: rgba(255, 255, 255, 0.2); }
+        }
+    }
+
+    // Legal text (CGU)
+    .legal-text {
+        .legal-section {
+            margin-bottom: 40px;
+
+            .section-content {
+                p { margin-bottom: 1rem; }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .info-page {
+        padding: 20px 15px;
+
+        .info-container {
+            padding: 25px;
+        }
+
+        .info-header h1.gradient-text {
+            font-size: 2.5rem;
+        }
+    }
+}
