@@ -1,6 +1,7 @@
 import type {Games} from '../types/games';
+import type { TranslationKeys } from '@/translations';
 
-export const getGames = (t: any): Promise<Games[]> => {
+export const getGames = (t: TranslationKeys): Promise<Games[]> => {
     const games: Games[] = [
         { id: "magic", name: t.games.magic, color: "#1a1a1a" },
         { id: "pokemon", name: t.games.pokemon, color: "#ffcb05" },
