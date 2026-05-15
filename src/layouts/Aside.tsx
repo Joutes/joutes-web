@@ -23,7 +23,11 @@ import {
     Notebook1Outlined
 } from "@lineiconshq/free-icons";
 
-export default function Aside() {
+interface AsideProps {
+    onItemClick?: () => void;
+}
+
+export default function Aside({ onItemClick }: AsideProps) {
     const { t } = useTranslation();
     const location = useLocation();
     const { selectedGame } = useUserPreferences();
@@ -91,7 +95,7 @@ export default function Aside() {
                                             <span className="sidebar-label">{item.label}</span>
                                         </div>
                                     ) : (
-                                        <Link to={item.path} className="sidebar-link">
+                                        <Link to={item.path} className="sidebar-link" onClick={onItemClick}>
                                             <Lineicons icon={item.icon ?? XOutlined} className="sidebar-icon" />
                                             <span className="sidebar-label">{item.label}</span>
                                         </Link>

@@ -98,16 +98,12 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .aside-container {
     flex-direction: column;
   }
 
   .sidebar {
-    width: 100%;
-    height: auto;
-    position: static;
-    border-right: none;
-    border-bottom: 1px solid color.adjust($background-color, $lightness: 5%);
+    display: none;
   }
 }

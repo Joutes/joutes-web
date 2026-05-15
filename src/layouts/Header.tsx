@@ -3,13 +3,18 @@ import Logo from '@/assets/Logo.png';
 import CustomSelect, {type Option } from '../components/CustomSelect/CustomSelect';
 import { useUserPreferences } from '@/store/userPreferences';
 import { useTranslation } from '@/hooks/useTranslation';
+import { Lineicons } from '@lineiconshq/react-lineicons';
+import { MenuCheesburgerOutlined } from "@lineiconshq/free-icons";
+import HeaderSelectors from './HeaderSelectors';
 
-export default function Header() {
+interface HeaderProps {
+    onMenuToggle: () => void;
+    isMenuOpen: boolean;
+}
+
+export default function Header({ onMenuToggle }: HeaderProps) {
     const { t } = useTranslation();
-    const { 
-        language, setLanguage, 
-        currency, setCurrency, 
-        priceSource, setPriceSource,
+    const {
         selectedGame, setSelectedGame
     } = useUserPreferences();
 
@@ -19,24 +24,6 @@ export default function Header() {
         { value: "yugioh", label: t.games.yugioh },
         { value: "lorcana", label: t.games.lorcana },
         { value: "onepiece", label: t.games.onepiece },
-    ];
-
-    const sourceOptions: Option[] = [
-        { value: "cardnexus", label: "CardNexus" },
-        { value: "cardmarket", label: "Cardmarket" },
-        { value: "tcgplayer", label: "TCGplayer" },
-    ];
-
-    const currencyOptions: Option[] = [
-        { value: "eur", label: "EUR" },
-        { value: "usd", label: "USD" },
-        { value: "cad", label: "CAD" },
-        { value: "chf", label: "CHF" },
-    ];
-
-    const languageOptions: Option[] = [
-        { value: "fr", label: t.language.french },
-        { value: "en", label: t.language.english },
     ];
 
     const handleGamesSelect = (value: string | undefined) => {
@@ -53,7 +40,7 @@ export default function Header() {
                 </Link>
 
                 {/* Section Milieu : Select générique avec filtre */}
-                <div className="search-container">
+                <div className="search-container desktop-only">
                     <CustomSelect
                         options={gamesOptions}
                         placeholder={t.header.choose_game}
@@ -70,41 +57,14 @@ export default function Header() {
             </div>
 
             {/* Section Droite : Sélecteurs + Connexion */}
-            <div className="auth-container">
-                <CustomSelect
-                    options={languageOptions}
-                    placeholder={t.header.language}
-                    className="header-select mini"
-                    variant="minimal"
-                    showLabel={true}
-                    showArrow={false}
-                    defaultValue={language}
-                    onSelect={(v) => v && setLanguage(v)}
-                />
-                <CustomSelect
-                    options={currencyOptions}
-                    placeholder={t.header.currency}
-                    noResultsText={t.header.no_results}
-                    withSearch={true}
-                    className="header-select mini"
-                    variant="minimal"
-                    showLabel={true}
-                    showArrow={false}
-                    defaultValue={currency}
-                    onSelect={(v) => v && setCurrency(v)}
-                />
-                <CustomSelect
-                    options={sourceOptions}
-                    placeholder={t.header.price_source}
-                    className="header-select"
-                    variant="minimal"
-                    showLabel={true}
-                    showArrow={false}
-                    defaultValue={priceSource}
-                    onSelect={(v) => v && setPriceSource(v)}
-                />
+            <div className="auth-container desktop-only">
+                <HeaderSelectors mini={true} variant="minimal" />
                 <button className="login-btn">{t.header.login}</button>
             </div>
+
+            <button className="burger-menu-btn" onClick={onMenuToggle}>
+                <Lineicons icon={MenuCheesburgerOutlined} />
+            </button>
         </header>
     );
 }
