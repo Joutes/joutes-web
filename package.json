@@ -13,6 +13,7 @@
     "@lineiconshq/free-icons": "^1.0.6",
     "@lineiconshq/react-lineicons": "^1.0.5",
     "axios": "^1.16.1",
+    "better-auth": "^1.6.11",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-helmet-async": "^3.0.0",
