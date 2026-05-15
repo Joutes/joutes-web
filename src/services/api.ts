@@ -24,6 +24,7 @@ api.interceptors.response.use(
 
             try {
                 const refreshToken = localStorage.getItem('refresh_token');
+
                 const { data } = await axios.post('/auth/refresh', { token: refreshToken });
 
                 localStorage.setItem('access_token', data.accessToken);
@@ -33,8 +34,9 @@ api.interceptors.response.use(
                 return api(originalRequest);
             } catch (refreshError) {
                 // Si le refresh échoue, on déconnecte
-                localStorage.clear();
-                window.location.href = '/login';
+                // @TODO: Remove clearing of refresh.
+                //localStorage.clear();
+                //window.location.href = '/login';
                 return Promise.reject(refreshError);
             }
         }
