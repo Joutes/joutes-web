@@ -9,15 +9,16 @@ export default function Header() {
     const { 
         language, setLanguage, 
         currency, setCurrency, 
-        priceSource, setPriceSource 
+        priceSource, setPriceSource,
+        selectedGame, setSelectedGame
     } = useUserPreferences();
 
-    const tcgsOptions: Option[] = [
-        { value: "magic", label: t.tcgs.magic },
-        { value: "pokemon", label: t.tcgs.pokemon },
-        { value: "yugioh", label: t.tcgs.yugioh },
-        { value: "lorcana", label: t.tcgs.lorcana },
-        { value: "onepiece", label: t.tcgs.onepiece },
+    const gamesOptions: Option[] = [
+        { value: "magic", label: t.games.magic },
+        { value: "pokemon", label: t.games.pokemon },
+        { value: "yugioh", label: t.games.yugioh },
+        { value: "lorcana", label: t.games.lorcana },
+        { value: "onepiece", label: t.games.onepiece },
     ];
 
     const sourceOptions: Option[] = [
@@ -38,8 +39,8 @@ export default function Header() {
         { value: "en", label: t.language.english },
     ];
 
-    const handleTcgSelect = (value: string | undefined) => {
-        console.log("Selected TCG:", value);
+    const handleGamesSelect = (value: string | undefined) => {
+        setSelectedGame(value || null);
     };
 
     return (
@@ -54,14 +55,15 @@ export default function Header() {
                 {/* Section Milieu : Select générique avec filtre */}
                 <div className="search-container">
                     <CustomSelect
-                        options={tcgsOptions}
-                        placeholder={t.header.choose_tcg}
-                        searchPlaceholder={t.header.search_tcg}
+                        options={gamesOptions}
+                        placeholder={t.header.choose_game}
+                        searchPlaceholder={t.header.search_game}
                         noResultsText={t.header.no_results}
                         withSearch={true}
                         isClearable={true}
                         showArrow={false}
-                        onSelect={handleTcgSelect}
+                        defaultValue={selectedGame || undefined}
+                        onSelect={handleGamesSelect}
                     />
                 </div>
 

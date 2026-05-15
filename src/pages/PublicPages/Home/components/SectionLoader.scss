@@ -1,0 +1,20 @@
+.section-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 150px;
+    width: 100%;
+
+    .spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid rgba(8, 174, 202, 0.1);
+        border-top-color: #08aeca;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}

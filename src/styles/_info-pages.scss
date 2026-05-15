@@ -11,8 +11,7 @@
         background: color.adjust($background-color, $lightness: 2%);
         border-radius: 12px;
         padding: 40px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        border: 1px solid color.adjust($background-color, $lightness: 5%);
     }
 
     .info-header {
@@ -20,18 +19,18 @@
         margin-bottom: 50px;
 
         h1.gradient-text {
-            font-size: 3.5rem;
+            font-size: 48px;
             margin-bottom: 15px;
         }
 
         .subtitle {
-            font-size: 1.25rem;
+            font-size: 22px;
             color: rgba($text-color, 0.8);
             font-weight: 500;
         }
 
         .last-update {
-            font-size: 0.9rem;
+            font-size: 16px;
             color: rgba($text-color, 0.5);
             font-style: italic;
         }
@@ -40,11 +39,11 @@
     .info-content {
         h2 {
             font-family: $font-title;
-            font-size: 1.8rem;
+            font-size: 22px;
             margin: 40px 0 20px 0;
-            color: white;
+            color: $text-color;
             text-transform: uppercase;
-            border-left: 4px solid #08aeca;
+            border-left: 4px solid $primary-color;
             padding-left: 15px;
         }
 
@@ -52,12 +51,12 @@
             font-size: 20px;
             font-weight: 700;
             margin-bottom: 10px;
-            color: #08aeca;
+            color: $text-color;
         }
 
         p {
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
             color: rgba($text-color, 0.9);
         }
 
@@ -65,7 +64,6 @@
             color: rgba($text-color, 0.6);
             margin-top: -15px;
             margin-bottom: 25px;
-            font-size: 1rem;
         }
     }
 
@@ -77,13 +75,14 @@
         margin: 40px 0;
 
         .feature-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: color.adjust($background-color, $lightness: 5%);
             padding: 25px;
             border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid color.adjust($background-color, $lightness: 10%);
             transition: transform 0.3s ease, background 0.3s ease;
 
             svg {
+                color: $primary-color;
                 float: left;
                 display: block;
                 margin-right: 5px;
@@ -91,7 +90,7 @@
 
             &:hover {
                 transform: translateY(-5px);
-                background: rgba(255, 255, 255, 0.05);
+                background: color.adjust($background-color, $lightness: 8%);
             }
         }
     }
@@ -102,13 +101,13 @@
         gap: 15px;
 
         .value-item {
-            background: rgba(8, 174, 202, 0.05);
+            background: color.adjust($primary-color, $lightness: -35%);
             padding: 15px 20px;
             border-radius: 8px;
-            border-left: 3px solid #08aeca;
+            border-left: 3px solid $primary-color;
 
             strong {
-                color: #08aeca;
+                color: $primary-color;
             }
         }
     }
@@ -127,12 +126,12 @@
             border-radius: 6px;
             text-decoration: none;
             font-weight: 700;
-            color: white;
+            color: $text-color;
             transition: all 0.2s ease;
 
-            &.discord { background: #5865F2; }
-            &.github { background: #333; }
-            &.twitter { background: #000; }
+            &.discord { background: $discord-color; }
+            &.github { background: $github-color; }
+            &.twitter { background: $x-color; }
 
             &:hover {
                 filter: brightness(1.1);
@@ -143,12 +142,12 @@
 
     // Open Source page specific
     .thanks-box {
-        background: linear-gradient(135deg, rgba(8, 174, 202, 0.1), rgba(4, 86, 99, 0.1));
+        background: linear-gradient(135deg, color.adjust($primary-color, $lightness: -30%), color.adjust($primary-color, $lightness: -33%));
         padding: 30px;
         border-radius: 10px;
         text-align: center;
         margin: 30px 0;
-        border: 1px solid rgba(8, 174, 202, 0.2);
+        border: 1px solid color.adjust($primary-color, $lightness: -15%);
 
         h2 { border: none; padding: 0; margin-top: 0; }
         
@@ -166,8 +165,8 @@
             transition: all 0.2s ease;
 
             &:hover {
-                background: #f0f0f0;
-                transform: translateY(-2px);
+                filter: brightness(1.1);
+                transform: scale(1.05);
             }
         }
     }
@@ -179,17 +178,13 @@
         margin-bottom: 40px;
 
         .dependency-card {
-            background: rgba(255, 255, 255, 0.02);
+            background: color.adjust($background-color, $lightness: 5%);
             padding: 20px;
             border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid color.adjust($background-color, $lightness: 10%);
 
-            h3 { font-size: 1.1rem; color: #08aeca; margin-bottom: 8px; }
-            p { font-size: 0.9rem; margin-bottom: 0; opacity: 0.8; }
-
-            &.dev-tool {
-                border-left: 2px solid rgba(255, 255, 255, 0.2);
-            }
+            h3 { font-size: 16px; color: $primary-color; margin-bottom: 8px; }
+            p { font-size: 14px; margin-bottom: 0; opacity: 0.8; }
         }
     }
 
@@ -204,8 +199,6 @@
             gap: 12px;
             margin-bottom: 12px;
             color: rgba($text-color, 0.9);
-
-            i { color: #08aeca; font-size: 1.2rem; }
         }
     }
 
@@ -222,11 +215,15 @@
             gap: 8px;
             padding: 8px 16px;
             border-radius: 4px;
+            transition: all 0.2s ease;
             
-            &.github { color: white; background: rgba(255, 255, 255, 0.1); }
-            &.discord { color: white; background: rgba(88, 101, 242, 0.2); border: 1px solid #5865F2; }
+            &.github { color: $text-color; background: $github-color; }
+            &.discord { color: $text-color; background: $discord-color; }
 
-            &:hover { background: rgba(255, 255, 255, 0.2); }
+            &:hover {
+                filter: brightness(1.1);
+                transform: scale(1.05);
+            }
         }
     }
 
@@ -236,22 +233,8 @@
             margin-bottom: 40px;
 
             .section-content {
-                p { margin-bottom: 1rem; }
+                p { margin-bottom: 0; }
             }
-        }
-    }
-}
-
-@media (max-width: 768px) {
-    .info-page {
-        padding: 20px 15px;
-
-        .info-container {
-            padding: 25px;
-        }
-
-        .info-header h1.gradient-text {
-            font-size: 2.5rem;
         }
     }
 }

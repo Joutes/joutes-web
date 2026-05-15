@@ -1,7 +1,7 @@
 export const fr = {
   header: {
-    choose_tcg: "Choisir un TCG...",
-    search_tcg: "Rechercher un TCG...",
+    choose_game: "Choisir un jeu...",
+    search_game: "Rechercher un jeu...",
     language: "Langue",
     currency: "Devise",
     price_source: "Source de prix",
@@ -12,7 +12,7 @@ export const fr = {
     english: "Anglais",
     french: "Français",
   },
-  tcgs: {
+  games: {
     magic: "Magic: The Gathering",
     pokemon: "Pokémon",
     yugioh: "Yu-Gi-Oh!",
@@ -165,7 +165,83 @@ export const fr = {
   notfound: {
     title: "404 - Page introuvable",
     subtitle: "Oups ! Page introuvable",
-    description: "Il semblerait que vous soyez perdu dans l'arène.",
+    description: "Il semblerait que vous soyez perdu.",
     back_home: "Retourner à l'accueil"
+  },
+  aside: {
+    selected_game: "Jeu sélectionné",
+    community: {
+      title: "Communauté",
+      games: "Liste des jeux",
+      events: "Evènements à venir",
+      shops: "Boutiques à proximité",
+      news: "Actualités"
+    },
+    my_space: {
+      title: "Mon espace",
+      decks: "Mes decks",
+      collection: "Ma collection",
+      guides: "Mes guides",
+      group: "Mon groupe"
+    },
+    my_games: {
+      title: "Mes parties",
+      counter: "Compteur de point/vie",
+      history: "Historique",
+      stats: "Statistiques"
+    },
+    cards: {
+      title: "Cartes",
+      database: "Base de données des cartes",
+      meta: "Meta",
+      erratas: "Erratas"
+    },
+    rules: {
+      title: "Règles",
+      simplified: "Règles simplifié",
+      official: "Règles officielles",
+      deck_checker: "Vérificateur de deck"
+    }
+  },
+  comingSoon: {
+    label: "Prochainement",
+    description: "Cette page est actuellement en cours de développement. Revenez bientôt pour découvrir toutes les fonctionnalités de {title}.",
+    descriptions: {
+      games: "Consultez la liste de tous les jeux de cartes et de société disponibles sur la plateforme.",
+      events: "Découvrez les tournois, avant-premières et soirées jeux à venir près de chez vous.",
+      shops: "Localisez les boutiques spécialisées et points de vente partenaires.",
+      news: "Restez informé des dernières sorties, extensions et annonces du monde ludique.",
+      decks: "Créez, modifiez et partagez vos listes de decks pour vos jeux préférés.",
+      collection: "Gérez votre inventaire personnel de cartes et suivez sa valeur.",
+      guides: "Accédez à vos guides stratégiques et tutoriels favoris.",
+      group: "Espace dédié à la gestion de votre équipe ou cercle de joueurs.",
+      counter: "Outil pratique pour compter les points de vie, ressources et marqueurs pendant vos parties.",
+      history: "Retrouvez le journal détaillé de vos précédentes rencontres et leurs résultats.",
+      stats: "Analysez vos performances et progressez grâce à des graphiques détaillés.",
+      database: "Explorez l'intégralité des cartes existantes avec des filtres avancés.",
+      meta: "Suivez les tendances du jeu compétitif et les decks les plus performants du moment.",
+      erratas: "Consultez les corrections de texte et modifications de règles officielles.",
+      simplified: "Apprenez les bases du jeu rapidement avec nos guides simplifiés.",
+      official: "Référentiel complet des règles détaillées pour arbitrer vos parties.",
+      deck_checker: "Vérifiez instantanément si votre deck respecte les formats officiels.",
+    }
+  },
+  home: {
+    welcome: "Bienvenue sur Joutes",
+    upcoming_events: "Évènements à venir",
+    my_decks_reminder: "Mes Decks",
+    followed_events: "Évènements suivis",
+    games_carousel: "Nos Jeux",
+    latest_news: "Dernières Actualités",
+    collection_summary: "Ma Collection",
+    see_all: "Voir tout",
+    no_game_selected: "Aucun jeu sélectionné",
+    no_events: "Aucun évènement prévu",
+    no_decks: "Vous n'avez pas encore de deck",
+    no_news: "Aucune actualité pour le moment",
+    cards_count: "{count} cartes",
+    decks_count: "{count} decks",
+    value: "Valeur estimée",
+    last_edit: "Dernière modification"
   }
 };

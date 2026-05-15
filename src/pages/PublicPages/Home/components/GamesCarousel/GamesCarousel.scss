@@ -1,0 +1,62 @@
+@use "@/styles/variables" as *;
+@use "sass:color";
+
+.games-carousel-section {
+    .games-carousel {
+        display: flex;
+        gap: 15px;
+        padding-top: 5px;
+        margin-top: -5px;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        scrollbar-width: thin;
+        scrollbar-color: color.adjust($primary-color, $lightness: -20%) transparent;
+
+        &::-webkit-scrollbar {
+            height: 4px;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: color.adjust($primary-color, $lightness: -20%);
+            border-radius: 10px;
+        }
+
+        .game-card-btn {
+            flex: 0 0 200px;
+            height: 100px;
+            border: none;
+            border-radius: 8px;
+            background: color.adjust($background-color, $lightness: -5%);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+
+            .game-card-inner {
+                position: relative;
+                z-index: 2;
+                height: 100%;
+                display: flex;
+                align-items: flex-end;
+                padding: 15px;
+
+                .game-name {
+                    color: $text-color;
+                    font-weight: 700;
+                    font-size: 16px;
+                    text-align: left;
+                }
+            }
+
+            &:hover {
+                transform: translateY(-5px);
+                background: color.adjust($background-color, $lightness: -10%);
+            }
+
+            &.active {
+                border: 2px solid $primary-color;
+                background: color.adjust($primary-color, $lightness: -30%);
+            }
+        }
+    }
+}

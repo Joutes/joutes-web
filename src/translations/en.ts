@@ -1,7 +1,7 @@
 export const en = {
   header: {
-    choose_tcg: "Choose a TCG...",
-    search_tcg: "Search for a TCG...",
+    choose_game: "Choose a game...",
+    search_game: "Search for a game...",
     language: "Language",
     currency: "Currency",
     price_source: "Price source",
@@ -12,7 +12,7 @@ export const en = {
     english: "English",
     french: "French",
   },
-  tcgs: {
+  games: {
     magic: "Magic: The Gathering",
     pokemon: "Pokémon",
     yugioh: "Yu-Gi-Oh!",
@@ -165,7 +165,83 @@ export const en = {
   notfound: {
     title: "404 - Page not found",
     subtitle: "Oops! Page not found",
-    description: "It seems you are lost in the arena.",
+    description: "It seems you are lost.",
     back_home: "Return to home"
+  },
+  aside: {
+    selected_game: "Selected game",
+    community: {
+      title: "Community",
+      games: "Game list",
+      events: "Upcoming events",
+      shops: "Shops nearby",
+      news: "News"
+    },
+    my_space: {
+      title: "My space",
+      decks: "My decks",
+      collection: "My collection",
+      guides: "My guides",
+      group: "My group"
+    },
+    my_games: {
+      title: "My games",
+      counter: "Point/Life counter",
+      history: "History",
+      stats: "Statistics"
+    },
+    cards: {
+      title: "Cards",
+      database: "Card database",
+      meta: "Meta",
+      erratas: "Erratas"
+    },
+    rules: {
+      title: "Rules",
+      simplified: "Simplified rules",
+      official: "Official rules",
+      deck_checker: "Deck checker"
+    }
+  },
+  comingSoon: {
+    label: "Coming Soon",
+    description: "This page is currently under development. Check back soon to discover all the features of {title}.",
+    descriptions: {
+      games: "Browse the list of all card and board games available on the platform.",
+      events: "Discover upcoming tournaments, pre-releases, and game nights near you.",
+      shops: "Locate specialized stores and partner retail points.",
+      news: "Stay informed about the latest releases, expansions, and news from the gaming world.",
+      decks: "Create, edit, and share your decklists for your favorite games.",
+      collection: "Manage your personal card inventory and track its value.",
+      guides: "Access your favorite strategic guides and tutorials.",
+      group: "Dedicated space for managing your team or gaming circle.",
+      counter: "Practical tool to track life points, resources, and counters during your games.",
+      history: "Find a detailed log of your previous matches and their results.",
+      stats: "Analyze your performance and progress with detailed charts.",
+      database: "Explore the entire database of existing cards with advanced filters.",
+      meta: "Follow competitive gaming trends and the best-performing decks of the moment.",
+      erratas: "Consult official text corrections and rule changes.",
+      simplified: "Learn the basics of the game quickly with our simplified guides.",
+      official: "Complete reference of detailed rules to referee your games.",
+      deck_checker: "Instantly verify if your deck complies with official formats.",
+    }
+  },
+  home: {
+    welcome: "Welcome to Joutes",
+    upcoming_events: "Upcoming Events",
+    my_decks_reminder: "My Decks",
+    followed_events: "Followed Events",
+    games_carousel: "Our Games",
+    latest_news: "Latest News",
+    collection_summary: "My Collection",
+    see_all: "See all",
+    no_game_selected: "No game selected",
+    no_events: "No events scheduled",
+    no_decks: "You don't have any decks yet",
+    no_news: "No news at the moment",
+    cards_count: "{count} cards",
+    decks_count: "{count} decks",
+    value: "Estimated Value",
+    last_edit: "Last edit"
   }
 };

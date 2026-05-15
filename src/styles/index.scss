@@ -3,6 +3,7 @@
 @use "variables" as *;
 @use "notfound";
 @use "info-pages";
+@use "aside";
 
 * {
   box-sizing: border-box;
@@ -14,7 +15,7 @@
 .gradient-text {
   font-family: $font-title;
   text-transform: uppercase;
-  background: linear-gradient(90deg, #08aeca, #045663);
+  background: linear-gradient(90deg, $primary-color, color.adjust($primary-color, $lightness: -20%));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;
@@ -22,7 +23,7 @@
 
 body {
   font-family: $font-main;
-  background-color: #121212;
+  background-color: $background-color;
   color: $text-color;
 }
 
@@ -91,10 +92,10 @@ body {
 
   .login-btn {
     text-transform: uppercase;
-    background: linear-gradient(45deg, #057488, #045663);
+    background: linear-gradient(45deg, $primary-color, color.adjust($primary-color, $lightness: -20%));
     font-size: 16px;
     font-weight: 700;
-    color: #FFF;
+    color: $text-color;
     padding: 8px 16px 5px 16px;
     border-radius: 4px;
     border: none;
@@ -114,7 +115,7 @@ body {
 // MAIN CONTENT
 .main-content {
   flex: 1;
-  padding: 2rem;
+  padding: 30px;
 }
 
 // FOOTER
@@ -133,13 +134,13 @@ body {
       gap: 20px;
 
       a {
-        color: #888;
+        color: color.adjust($text-color, $lightness: -50%);
         text-decoration: none;
         font-size: 16px;
         transition: color 0.2s;
 
         &:hover {
-          color: #FFF;
+          color: $text-color;
         }
       }
     }
@@ -166,7 +167,7 @@ body {
         font-family: $font-title;
         text-transform: uppercase;
         font-size: 20px;
-        color: white;
+        color: $text-color;
       }
     }
 
@@ -175,20 +176,15 @@ body {
       gap: 20px;
 
       a {
-        color: #888;
+        color: color.adjust($text-color, $lightness: -50%);
         text-decoration: none;
         transition: color 0.2s, transform 0.2s;
         display: flex;
         align-items: center;
         justify-content: center;
 
-        svg {
-          width: 24px;
-          height: 24px;
-        }
-
         &:hover {
-          color: #08aeca;
+          color: $primary-color;
           transform: translateY(-2px);
         }
       }
@@ -196,23 +192,13 @@ body {
   }
 
   .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid color.adjust($background-color, $lightness: 5%);
     padding-top: 20px;
     display: flex;
 
     .copyright {
-      font-size: 0.85rem;
-      color: #555;
-    }
-
-    .riot-disclaimer {
-      font-size: 0.75rem;
-      color: #444;
-      line-height: 1.5;
-
-      strong {
-        color: #666;
-      }
+      font-size: 12px;
+      color: color.adjust($text-color, $lightness: -60%);
     }
   }
 }
