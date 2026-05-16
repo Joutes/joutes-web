@@ -1,12 +1,6 @@
-export interface TCGCollection {
-    cards: number;
-    total: number;
-    value: string;
-}
-
 export interface CollectionSummary {
-    totalCards: number;
-    totalDecks: number;
-    estimatedValue: string;
-    byGame: Record<string, TCGCollection>;
+    game_code: string;
+    user_cards_count: number;
+    total_game_cards: number;
+    completion_percentage: number;
 }

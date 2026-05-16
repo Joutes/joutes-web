@@ -1,10 +1,10 @@
-import type {Games} from '../types/games';
+import type {Game} from '../types/game';
 import api from '@/services/api';
 
-let cachedGames: Games[] | null = null;
-let gamesPromise: Promise<Games[]> | null = null;
+let cachedGames: Game[] | null = null;
+let gamesPromise: Promise<Game[]> | null = null;
 
-export const getGames = async (): Promise<Games[]> => {
+export const getGames = async (): Promise<Game[]> => {
     if (cachedGames) {
         return cachedGames;
     }
@@ -13,7 +13,7 @@ export const getGames = async (): Promise<Games[]> => {
         return gamesPromise;
     }
 
-    gamesPromise = api.get<Games[]>('/games')
+    gamesPromise = api.get<Game[]>('/games')
         .then(response => {
             cachedGames = response.data;
             return response.data;

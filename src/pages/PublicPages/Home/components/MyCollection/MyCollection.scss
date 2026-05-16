@@ -20,7 +20,7 @@
                 color: rgba($text-color, 0.8);
             }
             .tcg-count {
-                color: var(--primary-color, #{$primary-color});
+                color: color-mix(in srgb, var(--game-color, var(--primary-color, #{$primary-color})), white 30%);
                 font-weight: 600;
             }
         }
@@ -33,8 +33,9 @@
 
             .progress-fill {
                 height: 100%;
-                background: linear-gradient(90deg, var(--primary-color, #{$primary-color}), color-mix(in srgb, var(--primary-color, #{$primary-color}), white 30%));
+                background: linear-gradient(90deg, var(--game-color, var(--primary-color, #{$primary-color})), color-mix(in srgb, var(--game-color, var(--primary-color, #{$primary-color})), white 20%));
                 border-radius: 3px;
+                transition: width 0.3s ease;
             }
         }
     }

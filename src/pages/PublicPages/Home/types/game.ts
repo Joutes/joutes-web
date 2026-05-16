@@ -4,7 +4,7 @@ export interface GameImage {
     vertical: string;
 }
 
-export interface Games {
+export interface Game {
     code: string;
     name: string;
     color: string;

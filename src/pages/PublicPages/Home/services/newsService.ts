@@ -1,22 +1,40 @@
-import type {NewsItem} from '../types/news';
+import type {NewsResponse} from '../types/news';
 import api from '@/services/api';
 
-let newsPromise: Promise<NewsItem[]> | null = null;
+const pendingRequests = new Map<string, Promise<NewsResponse>>();
 
-export const getNews = async (): Promise<NewsItem[]> => {
-    if (newsPromise) {
-        return newsPromise;
+export const getNews = async (page = 1, limit = 10): Promise<NewsResponse> => {
+    const params = new URLSearchParams();
+    params.append('page', page.toString());
+    params.append('limit', limit.toString());
+
+    const cacheKey = params.toString();
+    if (pendingRequests.has(cacheKey)) {
+        return pendingRequests.get(cacheKey)!;
     }
 
-    newsPromise = api.get<NewsItem[]>('/news')
+    const promise = api.get<NewsResponse>(`/news?${cacheKey}`)
         .then(response => response.data)
         .catch(error => {
             console.error("Erreur lors de la récupération des actualités:", error);
-            return [];
+            return {
+                data: [],
+                meta: {
+                    pagination: {
+                        current_page: 1,
+                        per_page: limit,
+                        total_items: 0,
+                        total_pages: 0,
+                        has_next_page: false,
+                        has_prev_page: false
+                    }
+                }
+            };
         })
         .finally(() => {
-            newsPromise = null;
+            pendingRequests.delete(cacheKey);
         });
 
-    return newsPromise;
+    pendingRequests.set(cacheKey, promise);
+    return promise;
 };

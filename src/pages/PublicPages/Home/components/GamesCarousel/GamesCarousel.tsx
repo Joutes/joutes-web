@@ -4,7 +4,7 @@ import { Lineicons } from '@lineiconshq/react-lineicons';
 import { GamePadModern1Outlined, ArrowRightOutlined } from "@lineiconshq/free-icons";
 import { useTranslation } from '@/hooks/useTranslation';
 import { useUserPreferences } from '@/store/userPreferences';
-import type {Games} from '../../types/games';
+import type {Game} from '../../types/game';
 import { getGames } from '../../services/gamesService';
 import SectionLoader from '../SectionLoader';
 import SectionMessage from '../SectionMessage';
@@ -13,7 +13,7 @@ import './GamesCarousel.scss';
 export default function GamesCarousel() {
     const { t } = useTranslation();
     const { selectedGame, setSelectedGame } = useUserPreferences();
-    const [games, setGames] = useState<Games[]>([]);
+    const [games, setGames] = useState<Game[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 

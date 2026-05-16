@@ -34,6 +34,31 @@
                 background-position: center;
             }
 
+            .deck-image-placeholder {
+                width: 100%;
+                height: 100%;
+                background-color: #e0e0e0;
+                color: #666666;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                padding: 10px;
+                text-align: center;
+
+                i {
+                    font-size: 24px;
+                }
+
+                span {
+                    font-size: 10px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    line-height: 1.2;
+                }
+            }
+
             .game-badge {
                 position: absolute;
                 top: 5px;
@@ -64,13 +89,6 @@
                 font-size: 16px;
                 color: $text-color;
                 margin-bottom: 4px;
-            }
-
-            .champion-name {
-                font-size: 14px;
-                color: var(--primary-color, #{$primary-color});
-                font-weight: 600;
-                margin-bottom: 8px;
             }
 
             .last-edit {

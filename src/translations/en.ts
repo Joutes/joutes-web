@@ -229,6 +229,7 @@ export const en = {
   },
   home: {
     welcome: "Welcome to Joutes",
+    welcomeSubtitle: "Your dedicated portal for TCG and board games",
     upcoming_events: "Upcoming Events",
     my_decks_reminder: "My Decks",
     followed_events: "Followed Events",
@@ -242,8 +243,10 @@ export const en = {
     no_news: "No news at the moment",
     no_followed_events: "You are not following any events",
     no_games: "No games available",
+    unknown_shop: "Unknown shop",
     collection_empty: "You don't have a collection yet",
     error_loading: "An error occurred while loading",
+    no_image_available: "No image available",
     cards_count: "{count} cards",
     decks_count: "{count} decks",
     value: "Estimated Value",

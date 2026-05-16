@@ -3,20 +3,24 @@ import { Link } from 'react-router-dom';
 import { Lineicons } from '@lineiconshq/react-lineicons';
 import { CalendarDaysOutlined, ArrowRightOutlined } from "@lineiconshq/free-icons";
 import { useTranslation } from '@/hooks/useTranslation';
-import type {UpcomingEvent} from '../../types/events';
+import type {Event} from '../../types/event';
 import { getUpcomingEvents } from '../../services/eventsService';
+import { useShops } from '@/hooks/useShops';
+import { useGames } from '@/hooks/useGames';
 import SectionLoader from '../SectionLoader';
 import SectionMessage from '../SectionMessage';
 import './EventList.scss';
 
 export default function EventList() {
-    const { t } = useTranslation();
-    const [events, setEvents] = useState<UpcomingEvent[]>([]);
+    const { t, language } = useTranslation();
+    const { getShopById, loading: shopsLoading } = useShops();
+    const { getGameByCode, loading: gamesLoading } = useGames();
+    const [events, setEvents] = useState<Event[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        getUpcomingEvents()
+        getUpcomingEvents(5)
             .then(data => {
                 setEvents(data);
                 setError(false);
@@ -30,24 +34,33 @@ export default function EventList() {
     }, []);
 
     const renderContent = () => {
-        if (loading) return <SectionLoader />;
+        if (loading || shopsLoading || gamesLoading) return <SectionLoader />;
         if (error) return <SectionMessage message={t.home.error_loading} type="error" />;
         if (events.length === 0) return <SectionMessage message={t.home.no_events} />;
 
         return (
             <div className="events-list">
-                {events.map(event => (
-                    <div key={event.id} className="event-card">
-                        <div className="event-date">
-                            <span className="day">{event.date.split(' ')[0]}</span>
-                            <span className="month">{event.date.split(' ')[1]}</span>
+                {events.map(event => {
+                    const shop = getShopById(event.shop_id);
+                    const game = getGameByCode(event.game_code);
+                    const eventDate = new Date(event.date);
+                    const weekday = eventDate.toLocaleString(language, { weekday: 'long' });
+                    const month = eventDate.toLocaleString(language, { month: 'short' }).replace('.', '');
+                    
+                    return (
+                        <div key={event.id} className="event-card">
+                            <div className="event-date">
+                                <span className="weekday">{weekday.charAt(0).toUpperCase() + weekday.slice(1)}</span>
+                                <span className="day">{eventDate.getDate()}</span>
+                                <span className="month">{month}</span>
+                            </div>
+                            <div className="event-info">
+                                <h3>{event.title}</h3>
+                                <p>{shop?.name || t.home.unknown_shop} | {game?.name || event.game_code}</p>
+                            </div>
                         </div>
-                        <div className="event-info">
-                            <h3>{event.title}</h3>
-                            <p>{event.type} • {t.games[event.game as keyof typeof t.games]}</p>
-                        </div>
-                    </div>
-                ))}
+                    );
+                })}
             </div>
         );
     };

@@ -1,10 +1,10 @@
 import { useState, useEffect, useMemo } from 'react';
 import { getGames } from '@/pages/PublicPages/Home/services/gamesService';
-import type { Games } from '@/pages/PublicPages/Home/types/games';
+import type { Game } from '../pages/PublicPages/Home/types/game';
 import { useUserPreferences } from '@/store/userPreferences';
 
 export const useGames = () => {
-    const [games, setGames] = useState<Games[]>([]);
+    const [games, setGames] = useState<Game[]>([]);
     const [loading, setLoading] = useState(true);
     const { selectedGame } = useUserPreferences();
 
@@ -19,5 +19,9 @@ export const useGames = () => {
         return games.find(g => g.code === selectedGame) || null;
     }, [games, selectedGame]);
 
-    return { games, loading, activeGame };
+    const getGameByCode = (code: string) => {
+        return games.find(g => g.code === code);
+    };
+
+    return { games, loading, activeGame, getGameByCode };
 };

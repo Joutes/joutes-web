@@ -1,21 +1,20 @@
 import type {Pagination} from "@/types/pagination.ts";
 
-export interface News {
+export interface Event {
     id: number;
     slug: string;
     title: string;
-    tags?: string[];
     image: string;
     short_description: string;
     description: string;
-    created_at: string;
-    updated_at: string;
-    shop_id: string | number;
+    date: string;
+    followed: boolean;
+    shop_id: number;
     game_code: string;
 }
 
-export interface NewsResponse {
-    data: News[];
+export interface EventsResponse {
+    data: Event[];
     meta: {
         pagination: Pagination;
     };

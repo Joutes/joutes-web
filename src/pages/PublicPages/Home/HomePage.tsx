@@ -19,7 +19,7 @@ export default function HomePage() {
 
             <header className="home-header">
                 <h1 className="gradient-text">{t.home.welcome}</h1>
-                <p className="welcome-subtitle">Votre portail dédié aux TCG et jeux de société</p>
+                <p className="welcome-subtitle">{t.home.welcomeSubtitle}</p>
             </header>
 
             <div className="home-grid">

@@ -79,7 +79,7 @@ export const fr = {
   },
   cguPage: {
     title: "Conditions Générales d'Utilisation",
-    lastUpdate: "Dernière mise à jour : 6 novembre 2025",
+    lastUpdate: "Dernière mise à jour : 6 mai 2026",
     sections: [
       {
         title: "1. Objet",
@@ -229,6 +229,7 @@ export const fr = {
   },
   home: {
     welcome: "Bienvenue sur Joutes",
+    welcomeSubtitle: "Votre portail dédié aux TCG et jeux de société",
     upcoming_events: "Évènements à venir",
     my_decks_reminder: "Mes Decks",
     followed_events: "Évènements suivis",
@@ -242,8 +243,10 @@ export const fr = {
     no_news: "Aucune actualité pour le moment",
     no_followed_events: "Vous ne suivez aucun évènement",
     no_games: "Aucun jeu disponible",
+    unknown_shop: "Boutique inconnue",
     collection_empty: "Vous n'avez pas encore de collection",
     error_loading: "Une erreur est survenue lors du chargement",
+    no_image_available: "Aucune image disponible",
     cards_count: "{count} cartes",
     decks_count: "{count} decks",
     value: "Valeur estimée",
