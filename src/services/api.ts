@@ -1,5 +1,12 @@
-import axios from 'axios';
+import axios, { type InternalAxiosRequestConfig } from 'axios';
 import { useDevApiLogStore } from '@/store/devApiLogStore';
+
+interface ApiRequestConfig extends InternalAxiosRequestConfig {
+    metadata: {
+        startTime: number;
+    };
+    _retry?: boolean;
+}
 
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000',
@@ -8,7 +15,7 @@ const api = axios.create({
 // Intercepteur pour injecter le token et mesurer le temps
 api.interceptors.request.use((config) => {
     // On stocke le temps de début
-    (config as any).metadata = { startTime: Date.now() };
+    (config as ApiRequestConfig).metadata = { startTime: Date.now() };
     return config;
 });
 
@@ -16,10 +23,11 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
     (response) => {
         if (import.meta.env.DEV) {
-            const duration = Date.now() - (response.config as any).metadata.startTime;
+            const config = response.config as ApiRequestConfig;
+            const duration = Date.now() - config.metadata.startTime;
             useDevApiLogStore.getState().addLog({
-                method: response.config.method?.toUpperCase() || 'UNKNOWN',
-                url: response.config.url || '',
+                method: config.method?.toUpperCase() || 'UNKNOWN',
+                url: config.url || '',
                 status: response.status,
                 duration: duration
             });
@@ -27,20 +35,22 @@ api.interceptors.response.use(
         return response;
     },
     async (error) => {
-        if (import.meta.env.DEV && error.config) {
-            const duration = Date.now() - (error.config as any).metadata.startTime;
+        const config = error.config as ApiRequestConfig;
+
+        if (import.meta.env.DEV && config) {
+            const duration = Date.now() - config.metadata.startTime;
             useDevApiLogStore.getState().addLog({
-                method: error.config.method?.toUpperCase() || 'UNKNOWN',
-                url: error.config.url || '',
+                method: config.method?.toUpperCase() || 'UNKNOWN',
+                url: config.url || '',
                 status: error.response?.status || 0,
                 duration: duration,
                 errorPayload: error.response?.data
             });
         }
 
-        const originalRequest = error.config;
+        const originalRequest = config;
 
-        if (error.response?.status === 401 && !originalRequest._retry) {
+        if (error.response?.status === 401 && originalRequest && !originalRequest._retry) {
             originalRequest._retry = true;
 
             try {

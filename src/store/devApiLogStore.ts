@@ -6,7 +6,7 @@ export interface ApiLog {
     url: string;
     status: number;
     duration: number;
-    errorPayload?: any;
+    errorPayload?: unknown;
     timestamp: number;
 }
 

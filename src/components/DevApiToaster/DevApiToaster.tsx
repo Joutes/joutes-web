@@ -38,7 +38,7 @@ const DevApiToaster: React.FC = () => {
                         <span>{new Date(log.timestamp).toLocaleTimeString()}</span>
                     </div>
 
-                    {(log.status >= 400 || log.status === 0) && log.errorPayload && (
+                    {!!((log.status >= 400 || log.status === 0) && log.errorPayload) && (
                         <div className="error-payload">
                             {JSON.stringify(log.errorPayload, null, 2)}
                         </div>
