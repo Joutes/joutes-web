@@ -6,7 +6,15 @@ export const en = {
     currency: "Currency",
     price_source: "Price source",
     login: "Login",
+    logout: "Logout",
     no_results: "No results"
+  },
+  auth: {
+    modal_title: "Login",
+    modal_subtitle: "Choose your login method to access Joutes",
+    login_with_joutes: "Login with Joutes",
+    login_with_discord: "Login with Discord",
+    profile: "My Profile",
   },
   language: {
     english: "English",

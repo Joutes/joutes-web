@@ -45,6 +45,49 @@
   flex-direction: column;
   gap: 30px;
 
+  .mobile-user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    background-color: color.adjust($background-color, $lightness: 5%);
+    border-radius: 12px;
+    border: 1px solid color.adjust($background-color, $lightness: 10%);
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+      font-weight: 600;
+
+      i, svg {
+        font-size: 24px;
+        color: $primary-color;
+      }
+    }
+
+    .logout-btn.mobile {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px;
+      background-color: rgba(255, 107, 107, 0.1);
+      color: #ff6b6b;
+      border: 1px solid rgba(255, 107, 107, 0.2);
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:hover {
+        background-color: #ff6b6b;
+        color: white;
+      }
+    }
+  }
+
   .mobile-selectors {
     display: flex;
     flex-direction: column;

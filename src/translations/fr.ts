@@ -6,7 +6,15 @@ export const fr = {
     currency: "Devise",
     price_source: "Source de prix",
     login: "Connexion",
+    logout: "Déconnexion",
     no_results: "Aucun résultat"
+  },
+  auth: {
+    modal_title: "Connexion",
+    modal_subtitle: "Choisissez votre méthode de connexion pour accéder à Joutes",
+    login_with_joutes: "Se connecter avec Joutes",
+    login_with_discord: "Se connecter avec Discord",
+    profile: "Mon Profil"
   },
   language: {
     english: "Anglais",

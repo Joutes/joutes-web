@@ -4,6 +4,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Aside from './Aside';
 import MobileMenu from './MobileMenu';
+import LoginModal from '@/components/LoginModal/LoginModal';
 
 export default function MainLayout() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,6 +24,8 @@ export default function MainLayout() {
             </div>
 
             <Footer />
+            
+            <LoginModal />
         </div>
     );
 }

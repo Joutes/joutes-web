@@ -6,6 +6,7 @@ import CguPage from '../pages/InfoPages/CguPage';
 import OpenSourcePage from '../pages/InfoPages/OpenSourcePage';
 import NotFoundPage from '../pages/ErrorPages/NotFoundPage';
 import ComingSoonPage from '../pages/PublicPages/ComingSoonPage';
+import AuthCallback from '../pages/PublicPages/AuthCallback';
 import { useTranslation } from '@/hooks/useTranslation';
 
 export const AppRoutes = () => {
@@ -18,6 +19,7 @@ export const AppRoutes = () => {
                 <Route path="about" element={<AboutPage />} />
                 <Route path="cgu" element={<CguPage />} />
                 <Route path="opensource" element={<OpenSourcePage />} />
+                <Route path="auth/callback" element={<AuthCallback />} />
                 
                 <Route path="games" element={<ComingSoonPage title={t.aside.community.games} description={t.comingSoon.descriptions.games} />} />
                 <Route path="events" element={<ComingSoonPage title={t.aside.community.events} description={t.comingSoon.descriptions.events} />} />

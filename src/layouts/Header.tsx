@@ -3,8 +3,10 @@ import Logo from '@/assets/Logo.png';
 import CustomSelect, {type Option } from '../components/CustomSelect/CustomSelect';
 import { useUserPreferences } from '@/store/userPreferences';
 import { useTranslation } from '@/hooks/useTranslation';
+import { useUIStore } from '@/store/uiStore';
+import { useAuth } from 'react-oidc-context';
 import { Lineicons } from '@lineiconshq/react-lineicons';
-import { MenuCheesburgerOutlined } from "@lineiconshq/free-icons";
+import { MenuCheesburgerOutlined, ExitOutlined, User4Outlined } from "@lineiconshq/free-icons";
 import HeaderSelectors from './HeaderSelectors';
 
 interface HeaderProps {
@@ -17,6 +19,8 @@ export default function Header({ onMenuToggle }: HeaderProps) {
     const {
         selectedGame, setSelectedGame
     } = useUserPreferences();
+    const { openLoginModal } = useUIStore();
+    const auth = useAuth();
 
     const gamesOptions: Option[] = [
         { value: "magic", label: t.games.magic },
@@ -28,6 +32,14 @@ export default function Header({ onMenuToggle }: HeaderProps) {
 
     const handleGamesSelect = (value: string | undefined) => {
         setSelectedGame(value || null);
+    };
+
+    const handleLogout = () => {
+        auth.signoutRedirect({
+            extraQueryParams: {
+                client_id: import.meta.env.VITE_AUTH_CLIENT_ID
+            }
+        });
     };
 
     return (
@@ -59,7 +71,20 @@ export default function Header({ onMenuToggle }: HeaderProps) {
             {/* Section Droite : Sélecteurs + Connexion */}
             <div className="auth-container desktop-only">
                 <HeaderSelectors mini={true} variant="minimal" />
-                <button className="login-btn">{t.header.login}</button>
+                
+                {auth.isAuthenticated ? (
+                    <div className="user-auth-info">
+                        <div className="user-profile">
+                            <Lineicons icon={User4Outlined} />
+                            <span>{auth.user?.profile.name || auth.user?.profile.preferred_username}</span>
+                        </div>
+                        <button className="logout-btn" onClick={handleLogout} title={t.header.logout}>
+                            <Lineicons icon={ExitOutlined} />
+                        </button>
+                    </div>
+                ) : (
+                    <button className="login-btn" onClick={openLoginModal}>{t.header.login}</button>
+                )}
             </div>
 
             <button className="burger-menu-btn" onClick={onMenuToggle}>

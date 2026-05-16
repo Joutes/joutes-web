@@ -95,6 +95,49 @@ body {
     }
   }
 
+  .user-auth-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: color.adjust($background-color, $lightness: 5%);
+    padding: 4px 8px 4px 12px;
+    border-radius: 8px;
+    border: 1px solid color.adjust($background-color, $lightness: 10%);
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: $text-color;
+
+      i, svg {
+        font-size: 18px;
+        color: $primary-color;
+      }
+    }
+
+    .logout-btn {
+      background: none;
+      border: none;
+      color: color.adjust($text-color, $lightness: -40%);
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      border-radius: 4px;
+      transition: all 0.2s;
+
+      &:hover {
+        color: #ff6b6b;
+        background-color: rgba(255, 107, 107, 0.1);
+      }
+    }
+  }
+
   .burger-menu-btn {
     display: none;
     background: none;

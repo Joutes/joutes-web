@@ -1,9 +1,11 @@
 import { useTranslation } from '@/hooks/useTranslation';
 import { useUserPreferences } from '@/store/userPreferences';
+import { useUIStore } from '@/store/uiStore';
+import { useAuth } from 'react-oidc-context';
 import CustomSelect, { type Option } from '../components/CustomSelect/CustomSelect';
 import Aside from './Aside';
 import { Lineicons } from '@lineiconshq/react-lineicons';
-import {XmarkOutlined} from "@lineiconshq/free-icons";
+import {XmarkOutlined, ExitOutlined, User4Outlined} from "@lineiconshq/free-icons";
 import HeaderSelectors from './HeaderSelectors';
 
 interface MobileMenuProps {
@@ -16,6 +18,8 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     const { 
         selectedGame, setSelectedGame
     } = useUserPreferences();
+    const { openLoginModal } = useUIStore();
+    const auth = useAuth();
 
     const gamesOptions: Option[] = [
         { value: "magic", label: t.games.magic },
@@ -24,6 +28,20 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         { value: "lorcana", label: t.games.lorcana },
         { value: "onepiece", label: t.games.onepiece },
     ];
+
+    const handleLoginClick = () => {
+        onClose();
+        openLoginModal();
+    };
+
+    const handleLogoutClick = () => {
+        auth.signoutRedirect({
+            extraQueryParams: {
+                client_id: import.meta.env.VITE_AUTH_CLIENT_ID
+            }
+        });
+        onClose();
+    };
 
     if (!isOpen) return null;
 
@@ -37,7 +55,19 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 </div>
 
                 <div className="mobile-menu-body">
-                    <button className="login-btn mobile">{t.header.login}</button>
+                    {auth.isAuthenticated ? (
+                        <div className="mobile-user-info">
+                            <div className="user-profile">
+                                <Lineicons icon={User4Outlined} />
+                                <span>{auth.user?.profile.name || auth.user?.profile.preferred_username}</span>
+                            </div>
+                            <button className="logout-btn mobile" onClick={handleLogoutClick}>
+                                <Lineicons icon={ExitOutlined} /> {t.header.logout}
+                            </button>
+                        </div>
+                    ) : (
+                        <button className="login-btn mobile" onClick={handleLoginClick}>{t.header.login}</button>
+                    )}
                     
                     <div className="mobile-selectors">
                         <div className="selector-group">
