@@ -20,7 +20,7 @@
                 color: rgba($text-color, 0.8);
             }
             .tcg-count {
-                color: $primary-color;
+                color: var(--primary-color, #{$primary-color});
                 font-weight: 600;
             }
         }
@@ -33,7 +33,7 @@
 
             .progress-fill {
                 height: 100%;
-                background: linear-gradient(90deg, $primary-color, color.adjust($primary-color, $lightness: 30%));
+                background: linear-gradient(90deg, var(--primary-color, #{$primary-color}), color-mix(in srgb, var(--primary-color, #{$primary-color}), white 30%));
                 border-radius: 3px;
             }
         }

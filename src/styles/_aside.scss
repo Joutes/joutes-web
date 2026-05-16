@@ -68,10 +68,10 @@
         }
 
         &.active:not(.disabled) {
-          background-color: color.adjust($primary-color, $lightness: -28%);
+          background-color: color-mix(in srgb, var(--primary-color, #{$primary-color}), transparent 70%);
           
           .sidebar-link {
-            color: $primary-color;
+            color: var(--primary-color, #{$primary-color});
           }
         }
 

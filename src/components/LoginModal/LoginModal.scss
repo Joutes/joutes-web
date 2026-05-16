@@ -50,7 +50,7 @@
   h2 {
     font-size: 28px;
     margin-bottom: 12px;
-    background: linear-gradient(90deg, $primary-color, color.adjust($primary-color, $lightness: -20%));
+    background: linear-gradient(90deg, var(--primary-color, #{$primary-color}), color-mix(in srgb, var(--primary-color, #{$primary-color}), black 20%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -91,7 +91,7 @@
     }
 
     &.joutes {
-      background: linear-gradient(135deg, $primary-color, color.adjust($primary-color, $lightness: -20%));
+      background: linear-gradient(135deg, var(--primary-color, #{$primary-color}), color-mix(in srgb, var(--primary-color, #{$primary-color}), black 20%));
       color: white;
 
       &:hover {

@@ -1,0 +1,24 @@
+.section-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    margin: 10px 0;
+
+    &.error {
+        color: #ff4d4d;
+        background: rgba(255, 77, 77, 0.05);
+        border: 1px solid rgba(255, 77, 77, 0.2);
+    }
+
+    p {
+        margin: 0;
+    }
+}

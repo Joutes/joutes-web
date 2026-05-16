@@ -43,7 +43,7 @@
             margin: 40px 0 20px 0;
             color: $text-color;
             text-transform: uppercase;
-            border-left: 4px solid $primary-color;
+            border-left: 4px solid var(--primary-color, #{$primary-color});
             padding-left: 15px;
         }
 
@@ -82,7 +82,7 @@
             transition: transform 0.3s ease, background 0.3s ease;
 
             svg {
-                color: $primary-color;
+                color: var(--primary-color, #{$primary-color});
                 float: left;
                 display: block;
                 margin-right: 5px;
@@ -101,13 +101,13 @@
         gap: 15px;
 
         .value-item {
-            background: color.adjust($primary-color, $lightness: -35%);
+            background: color-mix(in srgb, var(--primary-color, #{$primary-color}), black 75%);
             padding: 15px 20px;
             border-radius: 8px;
-            border-left: 3px solid $primary-color;
+            border-left: 3px solid var(--primary-color, #{$primary-color});
 
             strong {
-                color: $primary-color;
+                color: var(--primary-color, #{$primary-color});
             }
         }
     }
@@ -142,12 +142,15 @@
 
     // Open Source page specific
     .thanks-box {
-        background: linear-gradient(135deg, color.adjust($primary-color, $lightness: -30%), color.adjust($primary-color, $lightness: -33%));
+        background: linear-gradient(
+            135deg,
+            color-mix(in srgb, var(--primary-color, #{$primary-color}), black 40%),
+            color-mix(in srgb, var(--primary-color, #{$primary-color}), black 55%));
         padding: 30px;
         border-radius: 10px;
         text-align: center;
         margin: 30px 0;
-        border: 1px solid color.adjust($primary-color, $lightness: -15%);
+        border: 1px solid color-mix(in srgb, var(--primary-color, #{$primary-color}), black 25%);
 
         h2 { border: none; padding: 0; margin-top: 0; }
         
@@ -183,7 +186,7 @@
             border-radius: 8px;
             border: 1px solid color.adjust($background-color, $lightness: 10%);
 
-            h3 { font-size: 16px; color: $primary-color; margin-bottom: 8px; }
+            h3 { font-size: 16px; color: var(--primary-color, #{$primary-color}); margin-bottom: 8px; }
             p { font-size: 14px; margin-bottom: 0; opacity: 0.8; }
         }
     }

@@ -66,7 +66,10 @@
                     font-weight: 700;
                     text-transform: uppercase;
                     
-                    &.tag-annonce { background: color.adjust($primary-color, $lightness: -25%); color: $primary-color; }
+                    &.tag-annonce { 
+                        background: color-mix(in srgb, var(--primary-color, #{$primary-color}), transparent 70%); 
+                        color: var(--primary-color, #{$primary-color}); 
+                    }
                     &.tag-rules { background: color.adjust($tag-rules-color, $lightness: -55%); color: $tag-rules-color; }
                     &.tag-community { background: color.adjust($tag-community-color, $lightness: -40%); color: $tag-community-color; }
                     &.tag-promo { background: color.adjust($tag-promo-color, $lightness: -35%); color: $tag-promo-color; }

@@ -36,7 +36,7 @@
 
         .home-link {
             display: inline-block;
-            background: linear-gradient(45deg, $primary-color, color.adjust($primary-color, $lightness: -20%));
+            background: linear-gradient(45deg, var(--primary-color, #{$primary-color}), color-mix(in srgb, var(--primary-color, #{$primary-color}), black 20%));
             color: white;
             padding: 14px 28px;
             border-radius: 6px;

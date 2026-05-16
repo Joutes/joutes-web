@@ -29,7 +29,7 @@
         }
 
         .followed-icon {
-            color: color.adjust($primary-color, $lightness: -10%);
+            color: var(--primary-color, #{$primary-color});
         }
     }
 }

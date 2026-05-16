@@ -16,7 +16,7 @@
 .gradient-text {
   font-family: $font-title;
   text-transform: uppercase;
-  background: linear-gradient(90deg, $primary-color, color.adjust($primary-color, $lightness: -20%));
+  background: linear-gradient(90deg, var(--primary-color, #{$primary-color}), color-mix(in srgb, var(--primary-color, #{$primary-color}), black 20%));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;
@@ -114,7 +114,7 @@ body {
 
       i, svg {
         font-size: 18px;
-        color: $primary-color;
+        color: var(--primary-color, #{$primary-color});
       }
     }
 
@@ -152,7 +152,7 @@ body {
 
 .login-btn {
   text-transform: uppercase;
-  background: linear-gradient(45deg, $primary-color, color.adjust($primary-color, $lightness: -20%));
+  background: linear-gradient(45deg, var(--primary-color, #{$primary-color}), color-mix(in srgb, var(--primary-color, #{$primary-color}), black 20%));
   font-size: 16px;
   font-weight: 700;
   color: $text-color;
@@ -255,7 +255,7 @@ body {
         justify-content: center;
 
         &:hover {
-          color: $primary-color;
+          color: var(--primary-color, #{$primary-color});
           transform: translateY(-2px);
         }
       }

@@ -29,7 +29,7 @@
             justify-content: center;
             min-width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, $primary-color, color.adjust($primary-color, $lightness: -20%));
+            background: linear-gradient(135deg, var(--primary-color, #{$primary-color}), color-mix(in srgb, var(--primary-color, #{$primary-color}), black 20%));
             border-radius: 8px;
             color: $text-color;
 

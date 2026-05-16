@@ -7,6 +7,7 @@ import { useUserPreferences } from '@/store/userPreferences';
 import type {Games} from '../../types/games';
 import { getGames } from '../../services/gamesService';
 import SectionLoader from '../SectionLoader';
+import SectionMessage from '../SectionMessage';
 import './GamesCarousel.scss';
 
 export default function GamesCarousel() {
@@ -14,13 +15,47 @@ export default function GamesCarousel() {
     const { selectedGame, setSelectedGame } = useUserPreferences();
     const [games, setGames] = useState<Games[]>([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
-        getGames(t).then(data => {
-            setGames(data);
-            setLoading(false);
-        });
-    }, [t]);
+        getGames()
+            .then(data => {
+                setGames(data);
+                setError(false);
+            })
+            .catch(() => {
+                setError(true);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    }, []);
+
+    const renderContent = () => {
+        if (loading) return <SectionLoader />;
+        if (error) return <SectionMessage message={t.home.error_loading} type="error" />;
+        if (games.length === 0) return <SectionMessage message={t.home.no_games} />;
+
+        return (
+            <div className="games-carousel">
+                {games.map(game => (
+                    <button 
+                        key={game.code}
+                        className={`game-card-btn ${selectedGame === game.code ? 'active' : ''}`}
+                        onClick={() => setSelectedGame(game.code)}
+                        style={{ 
+                            backgroundImage: `url(${game.images.horizontal})`,
+                            '--game-color': game.color 
+                        } as React.CSSProperties}
+                    >
+                        <div className="game-card-inner">
+                            <span className="game-name">{game.name}</span>
+                        </div>
+                    </button>
+                ))}
+            </div>
+        );
+    };
 
     return (
         <section className="home-section games-carousel-section">
@@ -28,21 +63,7 @@ export default function GamesCarousel() {
                 <h2><Lineicons icon={GamePadModern1Outlined} /> {t.home.games_carousel}</h2>
                 <Link to="/games" className="see-all">{t.home.see_all} <Lineicons icon={ArrowRightOutlined} /></Link>
             </div>
-            {loading ? <SectionLoader /> : (
-                <div className="games-carousel">
-                    {games.map(game => (
-                        <button 
-                            key={game.id} 
-                            className={`game-card-btn ${selectedGame === game.id ? 'active' : ''}`}
-                            onClick={() => setSelectedGame(game.id)}
-                        >
-                            <div className="game-card-inner">
-                                <span className="game-name">{game.name}</span>
-                            </div>
-                        </button>
-                    ))}
-                </div>
-            )}
+            {renderContent()}
         </section>
     );
 }

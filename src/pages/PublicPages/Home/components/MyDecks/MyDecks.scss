@@ -68,7 +68,7 @@
 
             .champion-name {
                 font-size: 14px;
-                color: $primary-color;
+                color: var(--primary-color, #{$primary-color});
                 font-weight: 600;
                 margin-bottom: 8px;
             }

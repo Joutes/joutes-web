@@ -10,27 +10,38 @@
         overflow-x: auto;
         padding-bottom: 10px;
         scrollbar-width: thin;
-        scrollbar-color: color.adjust($primary-color, $lightness: -20%) transparent;
+        scrollbar-color: color-mix(in srgb, var(--primary-color, #{$primary-color}), black 20%) transparent;
 
         &::-webkit-scrollbar {
             height: 4px;
         }
         &::-webkit-scrollbar-thumb {
-            background: color.adjust($primary-color, $lightness: -20%);
+            background: color-mix(in srgb, var(--primary-color, #{$primary-color}), black 20%);
             border-radius: 10px;
         }
 
         .game-card-btn {
             flex: 0 0 200px;
-            height: 100px;
-            border: none;
+            height: 110px;
+            border: 2px solid transparent;
             border-radius: 8px;
             background: color.adjust($background-color, $lightness: -5%);
+            background-size: cover;
+            background-position: center;
             cursor: pointer;
             transition: all 0.3s ease;
             padding: 0;
             overflow: hidden;
             position: relative;
+
+            &::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 60%);
+                z-index: 1;
+                transition: opacity 0.3s ease;
+            }
 
             .game-card-inner {
                 position: relative;
@@ -38,24 +49,37 @@
                 height: 100%;
                 display: flex;
                 align-items: flex-end;
-                padding: 15px;
+                padding: 12px;
 
                 .game-name {
-                    color: $text-color;
+                    color: white;
+                    background: rgba(0, 0, 0, 0.6);
+                    backdrop-filter: blur(4px);
+                    padding: 4px 10px;
+                    border-radius: 6px;
                     font-weight: 700;
-                    font-size: 16px;
+                    font-size: 13px;
                     text-align: left;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
                 }
             }
 
             &:hover {
                 transform: translateY(-5px);
-                background: color.adjust($background-color, $lightness: -10%);
+                border-color: color-mix(in srgb, var(--game-color, #{$primary-color}), transparent 50%);
+                
+                &::before {
+                    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 100%);
+                }
             }
 
             &.active {
-                border: 2px solid $primary-color;
-                background: color.adjust($primary-color, $lightness: -30%);
+                border-color: var(--game-color, #{$primary-color});
+                
+                &::before {
+                    background: linear-gradient(to top, color-mix(in srgb, var(--game-color, #{$primary-color}), transparent 40%) 0%, rgba(0, 0, 0, 0.3) 100%);
+                }
             }
         }
     }

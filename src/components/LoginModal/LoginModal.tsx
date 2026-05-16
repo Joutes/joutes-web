@@ -3,7 +3,6 @@ import { useUIStore } from '@/store/uiStore';
 import { useAuth } from 'react-oidc-context';
 import { Lineicons } from '@lineiconshq/react-lineicons';
 import { XmarkOutlined, DiscordOutlined } from '@lineiconshq/free-icons';
-import Logo from '@/assets/Logo.png';
 import './LoginModal.scss';
 
 export default function LoginModal() {
@@ -48,7 +47,6 @@ export default function LoginModal() {
 
         <div className="login-options">
           <button className="login-option-btn joutes" onClick={handleLoginJoutes}>
-            <img src={Logo} alt="Joutes" className="option-icon" />
             <span>{t.auth.login_with_joutes}</span>
           </button>
 

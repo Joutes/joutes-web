@@ -8,6 +8,7 @@ import { useAuth } from 'react-oidc-context';
 import { Lineicons } from '@lineiconshq/react-lineicons';
 import { MenuCheesburgerOutlined, ExitOutlined, User4Outlined } from "@lineiconshq/free-icons";
 import HeaderSelectors from './HeaderSelectors';
+import { useGames } from '@/hooks/useGames';
 
 interface HeaderProps {
     onMenuToggle: () => void;
@@ -21,14 +22,13 @@ export default function Header({ onMenuToggle }: HeaderProps) {
     } = useUserPreferences();
     const { openLoginModal } = useUIStore();
     const auth = useAuth();
+    const { games } = useGames();
 
-    const gamesOptions: Option[] = [
-        { value: "magic", label: t.games.magic },
-        { value: "pokemon", label: t.games.pokemon },
-        { value: "yugioh", label: t.games.yugioh },
-        { value: "lorcana", label: t.games.lorcana },
-        { value: "onepiece", label: t.games.onepiece },
-    ];
+    const gamesOptions: Option[] = games.map(game => ({
+        value: game.code,
+        label: game.name,
+        icon: <img src={game.images.icon} alt={game.name} />
+    }));
 
     const handleGamesSelect = (value: string | undefined) => {
         setSelectedGame(value || null);

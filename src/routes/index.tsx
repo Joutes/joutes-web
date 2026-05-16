@@ -5,7 +5,7 @@ import AboutPage from '../pages/InfoPages/AboutPage';
 import CguPage from '../pages/InfoPages/CguPage';
 import OpenSourcePage from '../pages/InfoPages/OpenSourcePage';
 import NotFoundPage from '../pages/ErrorPages/NotFoundPage';
-import ComingSoonPage from '../pages/PublicPages/ComingSoonPage';
+import ComingSoonPage from '../pages/PublicPages/ComingSoonPage/ComingSoonPage';
 import AuthCallback from '../pages/PublicPages/AuthCallback';
 import { useTranslation } from '@/hooks/useTranslation';
 

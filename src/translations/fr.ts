@@ -20,13 +20,6 @@ export const fr = {
     english: "Anglais",
     french: "Français",
   },
-  games: {
-    magic: "Magic: The Gathering",
-    pokemon: "Pokémon",
-    yugioh: "Yu-Gi-Oh!",
-    lorcana: "Lorcana",
-    onepiece: "One Piece"
-  },
   footer: {
     about: "À propos",
     cgu: "CGU",
@@ -247,9 +240,13 @@ export const fr = {
     no_events: "Aucun évènement prévu",
     no_decks: "Vous n'avez pas encore de deck",
     no_news: "Aucune actualité pour le moment",
+    no_followed_events: "Vous ne suivez aucun évènement",
+    no_games: "Aucun jeu disponible",
+    collection_empty: "Vous n'avez pas encore de collection",
+    error_loading: "Une erreur est survenue lors du chargement",
     cards_count: "{count} cartes",
     decks_count: "{count} decks",
     value: "Valeur estimée",
     last_edit: "Dernière modification"
-  }
+  },
 };

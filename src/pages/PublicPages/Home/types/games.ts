@@ -1,5 +1,12 @@
+export interface GameImage {
+    icon: string;
+    horizontal: string;
+    vertical: string;
+}
+
 export interface Games {
-    id: string;
+    code: string;
     name: string;
     color: string;
+    images: GameImage;
 }

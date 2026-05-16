@@ -1,23 +1,41 @@
 import type {UpcomingEvent, FollowedEvent} from '../types/events';
+import api from '@/services/api';
 
-const upcomingEvents: UpcomingEvent[] = [
-    { id: 1, title: "Avant-première Modern Horizons 3", date: "15 Mai", game: "magic", type: "Prerelease" },
-    { id: 2, title: "League Challenge Mai", date: "18 Mai", game: "pokemon", type: "Tournament" },
-    { id: 3, title: "Regional Qualifier", date: "22 Mai", game: "yugioh", type: "Qualifier" },
-];
+let upcomingPromise: Promise<UpcomingEvent[]> | null = null;
+let followedPromise: Promise<FollowedEvent[]> | null = null;
 
-const followedEvents: FollowedEvent[] = [
-    { id: 4, title: "Soirée JDR & Jeux de plateau", date: "20 Mai", shop: "L'Antre du Dragon", game: "community" },
-];
+export const getUpcomingEvents = async (): Promise<UpcomingEvent[]> => {
+    if (upcomingPromise) {
+        return upcomingPromise;
+    }
 
-export const getUpcomingEvents = (): Promise<UpcomingEvent[]> => {
-    return new Promise((resolve) => {
-        setTimeout(() => resolve(upcomingEvents), 800);
-    });
+    upcomingPromise = api.get<UpcomingEvent[]>('/events/upcoming')
+        .then(response => response.data)
+        .catch(error => {
+            console.error("Erreur lors de la récupération des événements à venir:", error);
+            return [];
+        })
+        .finally(() => {
+            upcomingPromise = null;
+        });
+
+    return upcomingPromise;
 };
 
-export const getFollowedEvents = (): Promise<FollowedEvent[]> => {
-    return new Promise((resolve) => {
-        setTimeout(() => resolve(followedEvents), 600);
-    });
+export const getFollowedEvents = async (): Promise<FollowedEvent[]> => {
+    if (followedPromise) {
+        return followedPromise;
+    }
+
+    followedPromise = api.get<FollowedEvent[]>('/events/followed')
+        .then(response => response.data)
+        .catch(error => {
+            console.error("Erreur lors de la récupération des événements suivis:", error);
+            return [];
+        })
+        .finally(() => {
+            followedPromise = null;
+        });
+
+    return followedPromise;
 };

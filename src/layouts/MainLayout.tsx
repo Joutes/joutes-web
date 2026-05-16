@@ -10,7 +10,9 @@ export default function MainLayout() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <div className={`app-layout ${isMenuOpen ? 'menu-open' : ''}`}>
+        <div 
+            className={`app-layout ${isMenuOpen ? 'menu-open' : ''}`}
+        >
             <Header onMenuToggle={() => setIsMenuOpen(!isMenuOpen)} isMenuOpen={isMenuOpen} />
             
             <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />

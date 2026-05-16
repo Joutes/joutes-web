@@ -46,6 +46,27 @@
       text-overflow: ellipsis;
       margin-right: 8px;
 
+      .value-container {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .option-icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 20px;
+          height: 20px;
+          flex-shrink: 0;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
+        }
+      }
+
       &.with-label {
         flex-direction: column;
         align-items: flex-start;
@@ -60,8 +81,6 @@
         }
 
         .value-container {
-          display: flex;
-          align-items: center;
           gap: 6px;
         }
       }
@@ -173,7 +192,15 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 20px;
+          width: 24px;
+          height: 24px;
+          flex-shrink: 0;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
         }
       }
 
