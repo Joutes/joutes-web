@@ -1,0 +1,99 @@
+.dev-api-toaster {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+  max-width: 400px;
+  pointer-events: none;
+
+  .api-log-item {
+    pointer-events: auto;
+    background: #1e1e1e;
+    color: #fff;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-left: 4px solid #4caf50;
+    position: relative;
+    font-family: monospace;
+    font-size: 12px;
+    animation: slideIn 0.3s ease-out;
+
+    &.error {
+      border-left-color: #f44336;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: none;
+      border: none;
+      color: #888;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 0 5px;
+      line-height: 1;
+
+      &:hover {
+        color: #fff;
+      }
+    }
+
+    .log-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      font-weight: bold;
+
+      .method {
+        color: #ffa726;
+        margin-right: 8px;
+      }
+
+      .status {
+        &.success { color: #4caf50; }
+        &.error { color: #f44336; }
+      }
+    }
+
+    .log-url {
+      word-break: break-all;
+      color: #90caf9;
+      margin-bottom: 5px;
+    }
+
+    .log-info {
+      display: flex;
+      justify-content: space-between;
+      color: #aaa;
+      font-size: 11px;
+    }
+
+    .error-payload {
+      margin-top: 8px;
+      background: #2d2d2d;
+      padding: 8px;
+      border-radius: 4px;
+      max-height: 100px;
+      overflow-y: auto;
+      font-size: 10px;
+      white-space: pre-wrap;
+      border: 1px solid #444;
+    }
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

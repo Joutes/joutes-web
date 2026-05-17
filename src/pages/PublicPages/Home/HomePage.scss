@@ -1,0 +1,130 @@
+@use "sass:color";
+@use "@/styles/variables" as *;
+@use "@/styles/fonts" as *;
+
+.home-page {
+    max-width: 100%;
+    margin: 0;
+
+    .home-header {
+        margin-bottom: 30px;
+        text-align: center;
+
+        h1.gradient-text {
+            font-size: 38px;
+            margin-bottom: 8px;
+        }
+
+        .welcome-subtitle {
+            font-size: 18px;
+            color: rgba($text-color, 0.6);
+        }
+    }
+
+    .home-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-auto-rows: minmax(150px, auto);
+        gap: 20px;
+
+        // Grid Layout Positioning
+        .main-events {
+            grid-column: span 8;
+        }
+
+        .followed-events-section {
+            grid-column: span 4;
+        }
+
+        .news-section {
+            grid-column: span 12;
+        }
+
+        .my-decks-widget {
+            grid-column: span 8;
+        }
+
+        .collection-widget {
+            grid-column: span 4;
+        }
+
+        .games-carousel-section {
+            grid-column: span 12;
+        }
+    }
+
+    .home-section {
+        background: color.adjust($background-color, $lightness: 2%);
+        border: 1px solid color.adjust($background-color, $lightness: 5%);
+        border-radius: 8px;
+        padding: 20px;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+
+        &:hover {
+            border-color: color-mix(in srgb, var(--primary-color, #{$primary-color}), transparent 50%);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+
+            h2 {
+                font-size: 18px;
+                text-transform: uppercase;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                svg {
+                    color: var(--primary-color, #{$primary-color});
+                }
+            }
+
+            .see-all {
+                text-decoration: none;
+                color: var(--primary-color, #{$primary-color});
+                font-size: 16px;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                transition: gap 0.2s;
+
+                &:hover {
+                    gap: 8px;
+                }
+            }
+        }
+    }
+
+}
+
+// RESPONSIVE
+@media (max-width: 1024px) {
+    .home-page {
+        .home-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .main-events, .followed-events-section, .news-section, 
+        .my-decks-widget, .collection-widget, .games-carousel-section {
+            grid-column: span 2;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .home-page {
+        .home-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .main-events, .news-section, .games-carousel-section,
+        .my-decks-widget, .collection-widget, .followed-events-section {
+            grid-column: span 1;
+        }
+    }
+}

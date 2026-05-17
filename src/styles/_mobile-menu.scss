@@ -1,0 +1,121 @@
+@use "sass:color";
+@use "variables" as *;
+@use "fonts" as *;
+
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mobile-menu-content {
+  width: 80%;
+  max-width: 400px;
+  height: 100%;
+  background-color: $background-color;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+}
+
+.mobile-menu-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+
+  .close-btn {
+    background: none;
+    border: none;
+    color: $text-color;
+    font-size: 24px;
+    cursor: pointer;
+  }
+}
+
+.mobile-menu-body {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  .mobile-user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    background-color: color.adjust($background-color, $lightness: 5%);
+    border-radius: 12px;
+    border: 1px solid color.adjust($background-color, $lightness: 10%);
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+      font-weight: 600;
+
+      i, svg {
+        font-size: 24px;
+        color: var(--primary-color, #{$primary-color});
+      }
+    }
+
+    .logout-btn.mobile {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px;
+      background-color: rgba(255, 107, 107, 0.1);
+      color: #ff6b6b;
+      border: 1px solid rgba(255, 107, 107, 0.2);
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:hover {
+        background-color: #ff6b6b;
+        color: white;
+      }
+    }
+  }
+
+  .mobile-selectors {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .selector-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      label {
+        font-size: 14px;
+        color: color.adjust($text-color, $lightness: -40%);
+        font-weight: 600;
+      }
+    }
+  }
+
+  .mobile-aside-section {
+    border-top: 1px solid color.adjust($background-color, $lightness: 10%);
+    padding-top: 20px;
+    
+    .sidebar {
+      display: flex !important;
+      width: 100%;
+      position: static;
+      padding: 0;
+      border-right: none;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+@use "sass:color";
+@use "@/styles/variables" as *;
+
+.collection-widget {
+    .collection-tcg-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .collection-tcg-item {
+        .tcg-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            font-size: 14px;
+
+            .tcg-name {
+                font-weight: 700;
+                color: rgba($text-color, 0.8);
+            }
+            .tcg-count {
+                color: color-mix(in srgb, var(--game-color, var(--primary-color, #{$primary-color})), white 30%);
+                font-weight: 600;
+            }
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: color.adjust($background-color, $lightness: 10%);
+            border-radius: 3px;
+            overflow: hidden;
+
+            .progress-fill {
+                height: 100%;
+                background: linear-gradient(90deg, var(--game-color, var(--primary-color, #{$primary-color})), color-mix(in srgb, var(--game-color, var(--primary-color, #{$primary-color})), white 20%));
+                border-radius: 3px;
+                transition: width 0.3s ease;
+            }
+        }
+    }
+}

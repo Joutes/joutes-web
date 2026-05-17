@@ -13,9 +13,11 @@
     "@lineiconshq/free-icons": "^1.0.6",
     "@lineiconshq/react-lineicons": "^1.0.5",
     "axios": "^1.16.1",
+    "oidc-client-ts": "^3.5.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-helmet-async": "^3.0.0",
+    "react-oidc-context": "^3.3.1",
     "react-router-dom": "^7.15.0",
     "zustand": "^5.0.13"
   },

@@ -1,13 +1,24 @@
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
+import Aside from './Aside';
+import MobileMenu from './MobileMenu';
+import LoginModal from '@/components/LoginModal/LoginModal';
 
 export default function MainLayout() {
-    return (
-        <div className={`app-layout`}>
-            <Header />
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-            <div className="content-wrapper">
+    return (
+        <div 
+            className={`app-layout ${isMenuOpen ? 'menu-open' : ''}`}
+        >
+            <Header onMenuToggle={() => setIsMenuOpen(!isMenuOpen)} isMenuOpen={isMenuOpen} />
+            
+            <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+
+            <div className="content-wrapper aside-container">
+                <Aside />
 
                 <main className="main-content">
                     <Outlet />
@@ -15,6 +26,8 @@ export default function MainLayout() {
             </div>
 
             <Footer />
+            
+            <LoginModal />
         </div>
     );
 }

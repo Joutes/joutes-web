@@ -1,0 +1,86 @@
+@use "@/styles/variables" as *;
+@use "sass:color";
+
+.games-carousel-section {
+    .games-carousel {
+        display: flex;
+        gap: 15px;
+        padding-top: 5px;
+        margin-top: -5px;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        scrollbar-width: thin;
+        scrollbar-color: color-mix(in srgb, var(--primary-color, #{$primary-color}), black 20%) transparent;
+
+        &::-webkit-scrollbar {
+            height: 4px;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: color-mix(in srgb, var(--primary-color, #{$primary-color}), black 20%);
+            border-radius: 10px;
+        }
+
+        .game-card-btn {
+            flex: 0 0 200px;
+            height: 110px;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            background: color.adjust($background-color, $lightness: -5%);
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+
+            &::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 60%);
+                z-index: 1;
+                transition: opacity 0.3s ease;
+            }
+
+            .game-card-inner {
+                position: relative;
+                z-index: 2;
+                height: 100%;
+                display: flex;
+                align-items: flex-end;
+                padding: 12px;
+
+                .game-name {
+                    color: white;
+                    background: rgba(0, 0, 0, 0.6);
+                    backdrop-filter: blur(4px);
+                    padding: 4px 10px;
+                    border-radius: 6px;
+                    font-weight: 700;
+                    font-size: 13px;
+                    text-align: left;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+                }
+            }
+
+            &:hover {
+                transform: translateY(-5px);
+                border-color: color-mix(in srgb, var(--game-color, #{$primary-color}), transparent 50%);
+                
+                &::before {
+                    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 100%);
+                }
+            }
+
+            &.active {
+                border-color: var(--game-color, #{$primary-color});
+                
+                &::before {
+                    background: linear-gradient(to top, color-mix(in srgb, var(--game-color, #{$primary-color}), transparent 40%) 0%, rgba(0, 0, 0, 0.3) 100%);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,70 @@
+@use "sass:color";
+@use "@/styles/variables" as *;
+
+.main-events {
+    .events-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .event-card {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 15px;
+        background: color.adjust($background-color, $lightness: 5%);
+        border-radius: 8px;
+        transition: background 0.2s;
+        cursor: pointer;
+
+        &:hover {
+            background: color.adjust($background-color, $lightness: 8%);
+        }
+
+        .event-date {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 80px;
+            height: 75px;
+            background: linear-gradient(135deg, var(--primary-color, #{$primary-color}), color-mix(in srgb, var(--primary-color, #{$primary-color}), black 20%));
+            border-radius: 8px;
+            color: $text-color;
+            padding: 5px;
+
+            .weekday {
+                font-size: 9px;
+                text-transform: uppercase;
+                font-weight: 700;
+                opacity: 0.9;
+                margin-bottom: 2px;
+                letter-spacing: 0.5px;
+            }
+
+            .day {
+                font-size: 24px;
+                font-weight: 800;
+                line-height: 1;
+            }
+            .month {
+                font-size: 12px;
+                text-transform: uppercase;
+                font-weight: 700;
+            }
+        }
+
+        .event-info {
+            h3 {
+                font-size: 18px;
+                margin-bottom: 4px;
+                color: $text-color;
+            }
+            p {
+                font-size: 14px;
+                color: rgba($text-color, 0.5);
+            }
+        }
+    }
+}
