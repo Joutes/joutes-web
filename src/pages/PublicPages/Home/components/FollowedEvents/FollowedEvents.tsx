@@ -6,7 +6,7 @@ import type {Event} from '../../types/event';
 import { getFollowedEvents } from '../../services/eventsService';
 import { useShops } from '@/hooks/useShops';
 import { useGames } from '@/hooks/useGames';
-import SectionLoader from '../SectionLoader';
+import SectionLoader from '@/components/SectionLoader/SectionLoader';
 import SectionMessage from '../SectionMessage';
 import './FollowedEvents.scss';
 

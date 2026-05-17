@@ -1,25 +1,18 @@
-import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from '@/hooks/useTranslation';
+import ErrorPage from './ErrorPage';
 
 export default function NotFoundPage() {
     const { t } = useTranslation();
+    const navigate = useNavigate();
 
     return (
-        <section className="not-found-container">
-            <Helmet>
-                <title>{t.notfound.title} | Joutes</title>
-                <html lang="fr" />
-            </Helmet>
-
-            <div className="not-found-content">
-                <h1 className="gradient-text">404</h1>
-                <h2>{t.notfound.subtitle}</h2>
-                <p>{t.notfound.description}</p>
-                <Link to="/" className="home-link">
-                    {t.notfound.back_home}
-                </Link>
-            </div>
-        </section>
+        <ErrorPage 
+            errorCode="404"
+            subtitle={t.notfound.subtitle}
+            message={t.notfound.description}
+            backLabel={t.notfound.back_home}
+            onBack={() => navigate('/')}
+        />
     );
 }

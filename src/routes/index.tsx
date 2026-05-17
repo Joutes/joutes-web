@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import MainLayout from '@/layouts/MainLayout';
 import HomePage from '../pages/PublicPages/Home/HomePage';
+import GamesListPage from '../pages/PublicPages/GamesList/GamesListPage';
+import GameDetailsPage from '../pages/PublicPages/GamesList/SubPages/GameDetails/GameDetailsPage';
 import AboutPage from '../pages/InfoPages/AboutPage';
 import CguPage from '../pages/InfoPages/CguPage';
 import OpenSourcePage from '../pages/InfoPages/OpenSourcePage';
@@ -21,7 +23,8 @@ export const AppRoutes = () => {
                 <Route path="opensource" element={<OpenSourcePage />} />
                 <Route path="auth/callback" element={<AuthCallback />} />
                 
-                <Route path="games" element={<ComingSoonPage title={t.aside.community.games} description={t.comingSoon.descriptions.games} />} />
+                <Route path="games" element={<GamesListPage />} />
+                <Route path="games/:code" element={<GameDetailsPage />} />
                 <Route path="events" element={<ComingSoonPage title={t.aside.community.events} description={t.comingSoon.descriptions.events} />} />
                 <Route path="shops" element={<ComingSoonPage title={t.aside.community.shops} description={t.comingSoon.descriptions.shops} />} />
                 <Route path="news" element={<ComingSoonPage title={t.aside.community.news} description={t.comingSoon.descriptions.news} />} />

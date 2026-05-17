@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { getGames } from '@/pages/PublicPages/Home/services/gamesService';
-import type { Game } from '../pages/PublicPages/Home/types/game';
+import type { Game } from '@/types/game';
 import { useUserPreferences } from '@/store/userPreferences';
 
 export const useGames = () => {

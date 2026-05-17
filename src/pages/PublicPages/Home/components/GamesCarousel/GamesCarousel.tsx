@@ -4,9 +4,9 @@ import { Lineicons } from '@lineiconshq/react-lineicons';
 import { GamePadModern1Outlined, ArrowRightOutlined } from "@lineiconshq/free-icons";
 import { useTranslation } from '@/hooks/useTranslation';
 import { useUserPreferences } from '@/store/userPreferences';
-import type {Game} from '../../types/game';
+import type { Game } from '@/types/game';
 import { getGames } from '../../services/gamesService';
-import SectionLoader from '../SectionLoader';
+import SectionLoader from '@/components/SectionLoader/SectionLoader';
 import SectionMessage from '../SectionMessage';
 import './GamesCarousel.scss';
 

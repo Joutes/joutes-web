@@ -6,7 +6,7 @@ import { useTranslation } from '@/hooks/useTranslation';
 import type {CollectionSummary} from '../../types/collection';
 import { getCollectionSummary } from '../../services/collectionService';
 import { useGames } from '@/hooks/useGames';
-import SectionLoader from '../SectionLoader';
+import SectionLoader from '@/components/SectionLoader/SectionLoader';
 import SectionMessage from '../SectionMessage';
 import './MyCollection.scss';
 

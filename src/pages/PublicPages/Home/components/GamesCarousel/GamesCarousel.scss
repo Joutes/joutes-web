@@ -25,9 +25,8 @@
             height: 110px;
             border: 2px solid transparent;
             border-radius: 8px;
-            background: color.adjust($background-color, $lightness: -5%);
+            background: center color.adjust($background-color, $lightness: -5%);
             background-size: cover;
-            background-position: center;
             cursor: pointer;
             transition: all 0.3s ease;
             padding: 0;
