@@ -5,6 +5,7 @@ import { useTranslation } from '@/hooks/useTranslation';
 import { useUserPreferences } from '@/store/userPreferences';
 import type { Game } from '@/types/game';
 import SectionLoader from '@/components/SectionLoader/SectionLoader';
+import NoResults from '@/components/NoResults/NoResults';
 import './GamesListPage.scss';
 
 const CATEGORY_ORDER = ['TCG', 'DUEL', 'GROUP', 'SOLO', 'OTHER'];
@@ -44,6 +45,19 @@ export default function GamesListPage() {
     }, [games]);
 
     if (loading) return <SectionLoader />;
+
+    if (games.length === 0) {
+        return (
+            <div className="games-list-page">
+                <header className="page-header">
+                    <h1 className="gradient-text">{t.gamesList.title}</h1>
+                </header>
+                <NoResults 
+                    message={t.home.no_games}
+                />
+            </div>
+        );
+    }
 
     return (
         <div className="games-list-page">

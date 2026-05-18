@@ -9,10 +9,17 @@ export const useGames = () => {
     const { selectedGame } = useUserPreferences();
 
     useEffect(() => {
-        getGames().then(data => {
-            setGames(data);
-            setLoading(false);
-        });
+        getGames()
+            .then(data => {
+                setGames(data);
+            })
+            .catch(err => {
+                console.error('Error fetching games:', err);
+                setGames([]);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     }, []);
 
     const activeGame = useMemo(() => {
