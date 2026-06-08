@@ -2,7 +2,6 @@ import { Helmet } from 'react-helmet-async';
 import { useTranslation } from '@/hooks/useTranslation';
 import EventList from './components/EventList/EventList';
 import FollowedEvents from './components/FollowedEvents/FollowedEvents';
-import News from './components/News/News';
 import MyDecks from './components/MyDecks/MyDecks';
 import MyCollection from './components/MyCollection/MyCollection';
 import GamesCarousel from './components/GamesCarousel/GamesCarousel';
@@ -30,9 +29,9 @@ export default function HomePage() {
                 <FollowedEvents />
 
                 {/* Section Actualités */}
-                <News />
+                {/*<News />*/}
 
-                {/* Section Mes Decks (Rappel) */}
+                {/* Section Mes Decks */}
                 <MyDecks />
 
                 {/* Section Résumé Collection */}
