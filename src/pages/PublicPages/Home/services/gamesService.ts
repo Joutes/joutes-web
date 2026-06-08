@@ -1,4 +1,4 @@
-import type {Game} from '../types/game';
+import type { Game } from '@/types/game';
 import api from '@/services/api';
 
 let cachedGames: Game[] | null = null;
@@ -28,3 +28,4 @@ export const getGames = async (): Promise<Game[]> => {
 
     return gamesPromise;
 };
+

@@ -7,7 +7,7 @@ import type {News} from '../../types/news';
 import { getNews } from '../../services/newsService';
 import { useShops } from '@/hooks/useShops';
 import { useGames } from '@/hooks/useGames';
-import SectionLoader from '../SectionLoader';
+import SectionLoader from '@/components/SectionLoader/SectionLoader';
 import SectionMessage from '../SectionMessage';
 import './News.scss';
 

@@ -103,28 +103,15 @@
 }
 
 // RESPONSIVE
-@media (max-width: 1024px) {
+@media (max-width: 1304px) {
     .home-page {
         .home-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .main-events, .followed-events-section, .news-section, 
-        .my-decks-widget, .collection-widget, .games-carousel-section {
-            grid-column: span 2;
-        }
-    }
-}
-
-@media (max-width: 768px) {
-    .home-page {
-        .home-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .main-events, .news-section, .games-carousel-section,
-        .my-decks-widget, .collection-widget, .followed-events-section {
-            grid-column: span 1;
+            .main-events,
+            .followed-events-section,
+            .my-decks-widget,
+            .collection-widget {
+                grid-column: span 12;
+            }
         }
     }
 }

@@ -6,7 +6,7 @@ import { useTranslation } from '@/hooks/useTranslation';
 import type {Deck} from '../../types/decks';
 import { getMyDecks } from '../../services/decksService';
 import { useGames } from '@/hooks/useGames';
-import SectionLoader from '../SectionLoader';
+import SectionLoader from '@/components/SectionLoader/SectionLoader';
 import SectionMessage from '../SectionMessage';
 import './MyDecks.scss';
 

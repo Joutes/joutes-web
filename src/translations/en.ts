@@ -169,6 +169,12 @@ export const en = {
     description: "It seems you are lost.",
     back_home: "Return to home"
   },
+  errorPage: {
+    title: "Error",
+    subtitle: "An error occurred",
+    message: "Error message",
+    go_back: "Go back",
+  },
   aside: {
     selected_game: "Selected game",
     community: {
@@ -252,4 +258,37 @@ export const en = {
     value: "Estimated Value",
     last_edit: "Last edit"
   },
+  gamesList: {
+    title: "Game list",
+    categories: {
+      TCG: "TCG (Trading card game)",
+      DUEL: "Duel board game",
+      GROUP: "Group board game",
+      SOLO: "Solo board game",
+      OTHER: "Other"
+    },
+    notes: {
+      accessibility: "Accessibility",
+      depth: "Depth",
+      interaction: "Interaction",
+      replayability: "Replayability",
+      budget: "Budget"
+    },
+    select: "Select",
+    deselect: "Deselect",
+  },
+  gameDetails: {
+    description: "Description",
+    gallery: "Gallery",
+    formats: "Formats",
+    information: "Information",
+    players: "{min}-{max} players",
+    playing_time: "{min}-{max} min",
+    links: "Useful links",
+    official_website: "Official website",
+    rules: "Rules",
+    stats: "Statistics",
+    community_rating: "Community rating",
+    popularity: "Popularity"
+  }
 };

@@ -20,6 +20,14 @@
             line-height: 1;
         }
 
+        .target-title {
+            font-size: 18px;
+            color: var(--primary-color, $primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
         h2 {
             font-size: 48px;
             margin-bottom: 20px;
@@ -28,14 +36,24 @@
             font-family: $font-title;
         }
 
+        h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: $text-color;
+            font-family: $font-title;
+        }
+
         p {
+            background-color: color.adjust(red, $lightness: -35%);
+            padding: 15px;
+            border-radius: 4px;
             font-size: 22px;
             margin-bottom: 40px;
             color: rgba($text-color, 0.8);
+            border: 1px solid rgba(red, 0.3);
         }
 
         .home-link {
-            display: inline-block;
             background: linear-gradient(45deg, var(--primary-color, #{$primary-color}), color-mix(in srgb, var(--primary-color, #{$primary-color}), black 20%));
             color: white;
             padding: 14px 28px;
@@ -46,6 +64,13 @@
             letter-spacing: 1px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
 
             &:hover {
                 transform: translateY(-3px);

@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { getGames } from '@/pages/PublicPages/Home/services/gamesService';
-import type { Game } from '../pages/PublicPages/Home/types/game';
+import type { Game } from '@/types/game';
 import { useUserPreferences } from '@/store/userPreferences';
 
 export const useGames = () => {
@@ -9,10 +9,17 @@ export const useGames = () => {
     const { selectedGame } = useUserPreferences();
 
     useEffect(() => {
-        getGames().then(data => {
-            setGames(data);
-            setLoading(false);
-        });
+        getGames()
+            .then(data => {
+                setGames(data);
+            })
+            .catch(err => {
+                console.error('Error fetching games:', err);
+                setGames([]);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     }, []);
 
     const activeGame = useMemo(() => {

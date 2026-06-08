@@ -169,6 +169,12 @@ export const fr = {
     description: "Il semblerait que vous soyez perdu.",
     back_home: "Retourner à l'accueil"
   },
+  errorPage: {
+    title: "Erreur",
+    subtitle: "Une erreur est survenue",
+    message: "Message d'erreur",
+    go_back: "Revenir en arrière",
+  },
   aside: {
     selected_game: "Jeu sélectionné",
     community: {
@@ -252,4 +258,37 @@ export const fr = {
     value: "Valeur estimée",
     last_edit: "Dernière modification"
   },
+  gamesList: {
+    title: "Liste des jeux",
+    categories: {
+      TCG: "TCG (Trading card game)",
+      DUEL: "Jeu de société en duel",
+      GROUP: "Jeu de société en groupe",
+      SOLO: "Jeu de société solo",
+      OTHER: "Autre"
+    },
+    notes: {
+      accessibility: "Accessibilité",
+      depth: "Profondeur",
+      interaction: "Interaction",
+      replayability: "Rejouabilité",
+      budget: "Budget"
+    },
+    select: "Sélectionner",
+    deselect: "Désélectionner"
+  },
+  gameDetails: {
+    description: "Description",
+    gallery: "Galerie",
+    formats: "Formats",
+    information: "Informations",
+    players: "{min}-{max} joueurs",
+    playing_time: "{min}-{max} min",
+    links: "Liens utiles",
+    official_website: "Site officiel",
+    rules: "Règles",
+    stats: "Statistiques",
+    community_rating: "Note communauté",
+    popularity: "Popularité"
+  }
 };

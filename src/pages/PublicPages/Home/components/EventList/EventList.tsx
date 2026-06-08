@@ -7,7 +7,7 @@ import type {Event} from '../../types/event';
 import { getUpcomingEvents } from '../../services/eventsService';
 import { useShops } from '@/hooks/useShops';
 import { useGames } from '@/hooks/useGames';
-import SectionLoader from '../SectionLoader';
+import SectionLoader from '@/components/SectionLoader/SectionLoader';
 import SectionMessage from '../SectionMessage';
 import './EventList.scss';
 
