@@ -1,4 +1,4 @@
-import type {Shop} from '../types/shop';
+import type { Shop } from '@/types/shop';
 import api from '@/services/api';
 
 let cachedShops: Shop[] | null = null;

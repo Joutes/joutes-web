@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getShops } from '@/pages/PublicPages/Home/services/shopsService';
-import type { Shop } from '../pages/PublicPages/Home/types/shop';
+import type { Shop } from '@/types/shop';
 
 export const useShops = () => {
     const [shops, setShops] = useState<Shop[]>([]);

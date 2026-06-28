@@ -6,6 +6,8 @@ import GameDetailsPage from '../pages/PublicPages/GamesList/SubPages/GameDetails
 import AboutPage from '../pages/InfoPages/AboutPage';
 import CguPage from '../pages/InfoPages/CguPage';
 import OpenSourcePage from '../pages/InfoPages/OpenSourcePage';
+import ShopsListPage from '../pages/PublicPages/ShopsList/ShopsListPage';
+import ShopDetailsPage from '../pages/PublicPages/ShopsList/SubPages/ShopDetails/ShopDetailsPage';
 import NotFoundPage from '../pages/ErrorPages/NotFoundPage';
 import ComingSoonPage from '../pages/PublicPages/ComingSoonPage/ComingSoonPage';
 import AuthCallback from '../pages/PublicPages/AuthCallback';
@@ -26,7 +28,8 @@ export const AppRoutes = () => {
                 <Route path="games" element={<GamesListPage />} />
                 <Route path="games/:code" element={<GameDetailsPage />} />
                 <Route path="events" element={<ComingSoonPage title={t.aside.community.events} description={t.comingSoon.descriptions.events} />} />
-                <Route path="shops" element={<ComingSoonPage title={t.aside.community.shops} description={t.comingSoon.descriptions.shops} />} />
+                <Route path="shops" element={<ShopsListPage />} />
+                <Route path="shops/:slug" element={<ShopDetailsPage />} />
                 <Route path="news" element={<ComingSoonPage title={t.aside.community.news} description={t.comingSoon.descriptions.news} />} />
                 
                 <Route path="my-decks" element={<ComingSoonPage title={t.aside.my_space.decks} description={t.comingSoon.descriptions.decks} />} />

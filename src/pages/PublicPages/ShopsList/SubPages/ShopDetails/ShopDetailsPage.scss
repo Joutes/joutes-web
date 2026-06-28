@@ -1,0 +1,397 @@
+@use "sass:color";
+@use "@/styles/variables" as *;
+@use "@/styles/fonts" as *;
+
+.shop-details-page {
+    margin: -30px;
+
+    .content-container {
+        margin-top: -20px;
+        padding: 0 40px 60px;
+        display: grid;
+        grid-template-columns: 1fr 350px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .main-content {
+        padding: 30px 15px;
+
+        section {
+            background: color.adjust($background-color, $lightness: 3%);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.05);
+
+            h2 {
+                font-size: 26px;
+                margin-top: 0;
+                margin-bottom: 20px;
+                color: var(--game-color, $primary-color);
+            }
+        }
+
+        .games-grid-mini {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+
+            .game-mini-card {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                background: color.adjust($background-color, $lightness: 8%);
+                padding: 12px;
+                border-radius: 8px;
+                border-left: 4px solid var(--game-color, $primary-color);
+                transition: all 0.2s ease;
+
+                &:hover {
+                    transform: translateY(-3px);
+                    background: color.adjust($background-color, $lightness: 12%);
+                }
+
+                img {
+                    width: 36px;
+                    height: 36px;
+                    object-fit: contain;
+                }
+
+                span {
+                    font-size: 15px;
+                    font-weight: 600;
+                    color: $text-color;
+                }
+            }
+        }
+
+        .events-section {
+            .section-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 25px;
+                border-bottom: 2px solid color.adjust($background-color, $lightness: 10%);
+                padding-bottom: 15px;
+
+                h2 {
+                    margin: 0;
+                    border-bottom: none;
+                    padding-bottom: 0;
+                }
+
+                .view-switcher {
+                    display: flex;
+                    background: color.adjust($background-color, $lightness: 10%);
+                    padding: 4px;
+                    border-radius: 8px;
+
+                    .switch-btn {
+                        background: transparent;
+                        border: none;
+                        color: color.adjust($text-color, $alpha: -0.4);
+                        padding: 8px 15px;
+                        border-radius: 6px;
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        &.active {
+                            background: color.adjust($background-color, $lightness: 20%);
+                            color: $primary-color;
+                            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                        }
+
+                        &:hover:not(.active) {
+                            color: $text-color;
+                        }
+                    }
+                }
+            }
+
+            .calendar-view {
+                .calendar-header {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 20px;
+                    margin-bottom: 20px;
+
+                    .month-name {
+                        font-size: 18px;
+                        font-weight: 700;
+                        text-transform: capitalize;
+                        color: $primary-color;
+                        min-width: 180px;
+                        text-align: center;
+                    }
+
+                    .nav-btn {
+                        background: color.adjust($background-color, $lightness: 10%);
+                        border: none;
+                        color: $text-color;
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+
+                        &:hover {
+                            background: $primary-color;
+                            color: white;
+                        }
+                    }
+                }
+
+                .calendar-grid {
+                    display: grid;
+                    grid-template-columns: repeat(7, 1fr);
+                    gap: 10px;
+
+                    .calendar-day-label {
+                        text-align: center;
+                        font-size: 12px;
+                        font-weight: 700;
+                        color: color.adjust($text-color, $alpha: -0.5);
+                        padding-bottom: 10px;
+                        text-transform: uppercase;
+                    }
+
+                    .calendar-day {
+                        min-height: 100px;
+                        background: color.adjust($background-color, $lightness: 10%);
+                        border-radius: 8px;
+                        padding: 8px;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 5px;
+                        position: relative;
+                        transition: background 0.2s ease;
+
+                        &.empty {
+                            background: transparent;
+                            border: 1px dashed color.adjust($background-color, $lightness: 10%);
+                        }
+
+                        &.today {
+                            border: 2px solid $primary-color;
+                            background: color.adjust($background-color, $lightness: 15%);
+
+                            .day-number {
+                                background: $primary-color;
+                                color: white;
+                                width: 24px;
+                                height: 24px;
+                                border-radius: 50%;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            }
+                        }
+
+                        .day-number {
+                            font-size: 14px;
+                            font-weight: 700;
+                            color: color.adjust($text-color, $alpha: -0.3);
+                        }
+
+                        .day-events {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 4px;
+                            overflow: hidden;
+                        }
+
+                        .calendar-event-mini {
+                            background: color.adjust($background-color, $lightness: 6%);
+                            border-left: 3px solid var(--game-color, #666);
+                            padding: 6px;
+                            border-radius: 4px;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 4px;
+                            transition: all 0.2s ease;
+                            cursor: default;
+
+                            &:hover {
+                                background: color.adjust($background-color, $lightness: 7%);
+                                transform: translateY(-2px);
+                                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+                                z-index: 10;
+                            }
+
+                            .event-header {
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                gap: 6px;
+
+                                .event-time {
+                                    font-size: 9px;
+                                    font-weight: 800;
+                                    color: $primary-color;
+                                }
+
+                                .event-game-tag {
+                                    background: var(--game-color, #666);
+                                    color: white;
+                                    padding: 1px 4px;
+                                    border-radius: 3px;
+                                    font-size: 8px;
+                                    font-weight: 800;
+                                    text-transform: uppercase;
+                                    white-space: nowrap;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    max-width: 60px;
+                                }
+                            }
+
+                            .event-title {
+                                font-size: 12px;
+                                font-weight: 600;
+                                line-height: 1.2;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 2;
+                                -webkit-box-orient: vertical;
+                                overflow: hidden;
+                                color: color.adjust($text-color, $alpha: -0.1);
+                            }
+                        }
+                    }
+                }
+            }
+
+            .events-list-detailed {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+
+                .event-item-detailed {
+                    display: flex;
+                    gap: 20px;
+                    padding: 20px;
+                    background: color.adjust($background-color, $lightness: 8%);
+                    border-radius: 12px;
+                    align-items: center;
+                    border-left: 6px solid var(--game-color, $primary-color);
+                    transition: transform 0.2s ease;
+
+                    &:hover {
+                        transform: translateX(10px);
+                        background: color.adjust($background-color, $lightness: 12%);
+                    }
+
+                    .event-date-box {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        background: color.adjust($background-color, $lightness: 15%);
+                        padding: 10px;
+                        border-radius: 8px;
+                        min-width: 60px;
+
+                        .weekday {
+                            font-size: 11px;
+                            text-transform: uppercase;
+                            color: color.adjust($text-color, $alpha: -0.5);
+                            font-weight: 700;
+                            margin-bottom: 2px;
+                        }
+
+                        .day {
+                            font-weight: 800;
+                            font-size: 24px;
+                            color: white;
+                            line-height: 1;
+                        }
+
+                        .month {
+                            font-size: 12px;
+                            text-transform: uppercase;
+                            color: $primary-color;
+                            font-weight: 700;
+                            margin-top: 4px;
+                        }
+                    }
+
+                    .event-info {
+                        flex-grow: 1;
+
+                        .event-game-badge {
+                            display: inline-block;
+                            padding: 4px 8px;
+                            background: var(--game-color, #666);
+                            color: white;
+                            border-radius: 4px;
+                            font-size: 11px;
+                            font-weight: 700;
+                            text-transform: uppercase;
+                            margin-bottom: 8px;
+                        }
+
+                        h4 {
+                            margin: 0 0 5px 0;
+                            font-size: 18px;
+                            color: white;
+                        }
+
+                        .event-time {
+                            margin: 0;
+                            font-size: 14px;
+                            color: color.adjust($text-color, $alpha: -0.4);
+                        }
+                    }
+                }
+            }
+
+            .no-events {
+                text-align: center;
+                color: color.adjust($text-color, $alpha: -0.5);
+                font-style: italic;
+                padding: 40px 0;
+            }
+        }
+    }
+
+    aside {
+        padding: 30px 15px;
+
+        section {
+            background: color.adjust($background-color, $lightness: 3%);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+
+            h2 {
+                font-size: 22px;
+                margin-top: 0;
+                margin-bottom: 20px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                padding-bottom: 10px;
+            }
+
+            .map-container {
+                border-radius: 12px;
+                overflow: hidden;
+                border: 2px solid color.adjust($background-color, $lightness: 10%);
+            }
+        }
+    }
+}
+
+@media (max-width: 1180px) {
+    .shop-details-page {
+        .content-container {
+            grid-template-columns: 1fr;
+            margin-top: 0;
+        }
+    }
+}

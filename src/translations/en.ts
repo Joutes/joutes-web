@@ -25,6 +25,23 @@ export const en = {
     cgu: "CGU",
     opensource: "Open Source",
   },
+  shops: {
+    title: "Game Stores",
+    no_shops: "No shops found",
+    department: "Department",
+    details: {
+      info_title: "Practical Info",
+      address: "Address",
+      website: "Website",
+      gps: "GPS Coordinates",
+      games_played: "Games played in this shop",
+      upcoming_events: "Upcoming Events",
+      views: {
+        calendar: "Calendar",
+        list: "List"
+      }
+    }
+  },
   aboutPage: {
     title: "About Joutes",
     subtitle: "The platform connecting passionate players with their local community",
@@ -289,6 +306,12 @@ export const en = {
     rules: "Rules",
     stats: "Statistics",
     community_rating: "Community rating",
-    popularity: "Popularity"
+    popularity: "Popularity",
+    infos: {
+      publisher: "Publisher",
+      date: "Release date",
+      players: "Number of players",
+      duration: "Playing time"
+    }
   }
 };

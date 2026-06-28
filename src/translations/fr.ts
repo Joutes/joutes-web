@@ -25,6 +25,23 @@ export const fr = {
     cgu: "CGU",
     opensource: "Open Source",
   },
+  shops: {
+    title: "Boutiques de jeux",
+    no_shops: "Aucune boutique trouvée",
+    department: "Département",
+    details: {
+      info_title: "Infos pratiques",
+      address: "Adresse",
+      website: "Site web",
+      gps: "Coordonnées GPS",
+      games_played: "Jeux joués dans cette boutique",
+      upcoming_events: "Événements à venir",
+      views: {
+        calendar: "Calendrier",
+        list: "Liste"
+      }
+    }
+  },
   aboutPage: {
     title: "À propos de Joutes",
     subtitle: "La plateforme qui connecte les joueurs passionnés avec leur communauté locale",
@@ -289,6 +306,12 @@ export const fr = {
     rules: "Règles",
     stats: "Statistiques",
     community_rating: "Note communauté",
-    popularity: "Popularité"
+    popularity: "Popularité",
+    infos: {
+      publisher: "Éditeur",
+      date: "Date de sortie",
+      players: "Nombre de joueurs",
+      duration: "Durée de jeu"
+    }
   }
 };
