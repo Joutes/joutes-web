@@ -306,6 +306,12 @@ export const en = {
     rules: "Rules",
     stats: "Statistics",
     community_rating: "Community rating",
-    popularity: "Popularity"
+    popularity: "Popularity",
+    infos: {
+      publisher: "Publisher",
+      date: "Release date",
+      players: "Number of players",
+      duration: "Playing time"
+    }
   }
 };

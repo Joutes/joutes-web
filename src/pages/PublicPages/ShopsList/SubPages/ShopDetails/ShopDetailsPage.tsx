@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Lineicons } from '@lineiconshq/react-lineicons';
 import {
     ArrowLeftOutlined,
+    ArrowRightOutlined,
     Globe1Outlined,
     Buildings1Outlined,
     CalendarDaysOutlined,
@@ -11,10 +12,15 @@ import {
 } from "@lineiconshq/free-icons";
 import { getShopBySlug } from '../../services/shopsService';
 import type { Shop } from '@/types/shop';
+import type { Event } from '@/pages/PublicPages/Home/types/event';
+import type { Game } from '@/types/game';
 import { useTranslation } from '@/hooks/useTranslation';
 import { useGames } from '@/hooks/useGames';
 import SectionLoader from '@/components/SectionLoader/SectionLoader';
 import ErrorPage from '@/pages/ErrorPages/ErrorPage';
+import Banner from '@/components/Banner/Banner';
+import InfoSection from '@/components/InfoSection/InfoSection';
+import InfoItem from '@/components/InfoSection/InfoItem';
 import './ShopDetailsPage.scss';
 
 export default function ShopDetailsPage() {
@@ -27,12 +33,16 @@ export default function ShopDetailsPage() {
     const [viewMode, setViewMode] = useState<'calendar' | 'list'>('calendar');
 
     useEffect(() => {
+        let isMounted = true;
         if (slug) {
             getShopBySlug(slug).then(data => {
-                setShop(data);
-                setLoading(false);
+                if (isMounted) {
+                    setShop(data);
+                    setLoading(false);
+                }
             });
         }
+        return () => { isMounted = false; };
     }, [slug]);
 
     if (loading || gamesLoading) return <SectionLoader />;
@@ -54,16 +64,12 @@ export default function ShopDetailsPage() {
 
     return (
         <div className="shop-details-page">
-            <div className="shop-banner" style={{ backgroundImage: `url(${shop.image})` }}>
-                <div className="shop-banner-overlay">
-                    <button onClick={() => navigate('/shops')} className="back-btn" title={t.errorPage.go_back}>
-                        <Lineicons icon={ArrowLeftOutlined} />
-                    </button>
-                    <div className="shop-banner-content">
-                        <h1 className="shop-title">{shop.name}</h1>
-                    </div>
-                </div>
-            </div>
+            <Banner 
+                backgroundImage={shop.image}
+                title={shop.name}
+                onBack={() => navigate('/shops')}
+                backLabel={t.errorPage.go_back}
+            />
 
             <div className="content-container">
                 <div className="main-content">
@@ -111,46 +117,35 @@ export default function ShopDetailsPage() {
                 </div>
 
                 <aside className="side-content">
-                    <section className="info-card section">
-                        <h2>{t.shops.details.info_title}</h2>
-                        <div className="info-list">
-                            <div className="info-item">
-                                <div className="icon-wrapper">
-                                    <Lineicons icon={Buildings1Outlined} />
-                                </div>
-                                <div className="info-text">
-                                    <h3>{t.shops.details.address}</h3>
-                                    <p>{shop.address.street}<br />{shop.address.postal_code} {shop.address.city}</p>
-                                </div>
-                            </div>
-                            
-                            {shop.website && (
-                                <div className="info-item">
-                                    <div className="icon-wrapper">
-                                        <Lineicons icon={Globe1Outlined} />
-                                    </div>
-                                    <div className="info-text">
-                                        <h3>{t.shops.details.website}</h3>
-                                        <a href={shop.website} target="_blank" rel="noopener noreferrer" className="shop-link">
-                                            {shop.website.replace(/^https?:\/\//, '')}
-                                        </a>
-                                    </div>
-                                </div>
-                            )}
+                    <InfoSection title={t.shops.details.info_title}>
+                        <InfoItem 
+                            icon={Buildings1Outlined} 
+                            label={t.shops.details.address} 
+                            value={<p>{shop.address.street}<br />{shop.address.postal_code} {shop.address.city}</p>} 
+                        />
+                        
+                        {shop.website && (
+                            <InfoItem 
+                                icon={Globe1Outlined} 
+                                label={t.shops.details.website} 
+                                value={
+                                    <a href={shop.website} target="_blank" rel="noopener noreferrer">
+                                        {shop.website.replace(/^https?:\/\//, '')}
+                                    </a>
+                                } 
+                            />
+                        )}
 
-                            {shop.coordinates && (
-                                <div className="info-item">
-                                    <div className="icon-wrapper">
-                                        <Lineicons icon={TargetUserOutlined} />
-                                    </div>
-                                    <div className="info-text">
-                                        <h3>{t.shops.details.gps}</h3>
-                                        <p>{shop.coordinates.latitude}, {shop.coordinates.longitude}</p>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
+                        {shop.coordinates && (
+                            <InfoItem 
+                                icon={TargetUserOutlined} 
+                                label={t.shops.details.gps} 
+                                value={<p>{shop.coordinates.latitude}, {shop.coordinates.longitude}</p>} 
+                            />
+                        )}
+                    </InfoSection>
 
+                    <section className="map-card section">
                         {shop.coordinates && (
                             <div className="map-container">
                                 <iframe 
@@ -171,32 +166,60 @@ export default function ShopDetailsPage() {
     );
 }
 
-function CalendarView({ events, language, getGameByCode }: { events: any[], language: string, getGameByCode: any }) {
-    const days = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
-    const now = new Date();
-    const currentMonth = now.toLocaleString(language, { month: 'long', year: 'numeric' });
+function CalendarView({ events, language, getGameByCode }: { events: Event[], language: string, getGameByCode: (code: string) => Game | undefined }) {
+    const [viewDate, setViewDate] = useState(new Date());
+
+    const days = useMemo(() => {
+        const baseDate = new Date(2024, 0, 1);
+        return Array.from({ length: 7 }, (_, i) => {
+            const date = new Date(baseDate);
+            date.setDate(baseDate.getDate() + i);
+            const name = date.toLocaleString(language, { weekday: 'short' });
+            // Capitalize first letter and remove potential trailing dot
+            return name.charAt(0).toUpperCase() + name.slice(1).replace('.', '');
+        });
+    }, [language]);
+
+    const currentMonth = viewDate.toLocaleString(language, { month: 'long', year: 'numeric' });
+
+    // Handlers for month navigation
+    const prevMonth = () => {
+        setViewDate(new Date(viewDate.getFullYear(), viewDate.getMonth() - 1, 1));
+    };
+
+    const nextMonth = () => {
+        setViewDate(new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, 1));
+    };
 
     // Helper to get days in month
     const getDaysInMonth = (year: number, month: number) => new Date(year, month + 1, 0).getDate();
-    const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).getDay();
+    const firstDayOfMonth = new Date(viewDate.getFullYear(), viewDate.getMonth(), 1).getDay();
     // Adjust first day (JS Sunday is 0, we want Monday to be 0)
     const startOffset = (firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1);
     
-    const daysInMonth = getDaysInMonth(now.getFullYear(), now.getMonth());
+    const daysInMonth = getDaysInMonth(viewDate.getFullYear(), viewDate.getMonth());
 
     const getEventsForDay = (day: number) => {
         return events.filter(event => {
             const eventDate = new Date(event.date);
             return eventDate.getDate() === day && 
-                   eventDate.getMonth() === now.getMonth() && 
-                   eventDate.getFullYear() === now.getFullYear();
+                   eventDate.getMonth() === viewDate.getMonth() && 
+                   eventDate.getFullYear() === viewDate.getFullYear();
         });
     };
+
+    const now = new Date();
 
     return (
         <div className="calendar-view">
             <div className="calendar-header">
+                <button onClick={prevMonth} className="nav-btn" title="Mois précédent">
+                    <Lineicons icon={ArrowLeftOutlined} />
+                </button>
                 <span className="month-name">{currentMonth}</span>
+                <button onClick={nextMonth} className="nav-btn" title="Mois suivant">
+                    <Lineicons icon={ArrowRightOutlined} />
+                </button>
             </div>
             <div className="calendar-grid">
                 {days.map(d => <div key={d} className="calendar-day-label">{d}</div>)}
@@ -206,7 +229,9 @@ function CalendarView({ events, language, getGameByCode }: { events: any[], lang
                 {Array.from({ length: daysInMonth }).map((_, i) => {
                     const day = i + 1;
                     const dayEvents = getEventsForDay(day);
-                    const isToday = day === now.getDate();
+                    const isToday = day === now.getDate() && 
+                                   viewDate.getMonth() === now.getMonth() && 
+                                   viewDate.getFullYear() === now.getFullYear();
 
                     return (
                         <div key={day} className={`calendar-day ${isToday ? 'today' : ''} ${dayEvents.length > 0 ? 'has-events' : ''}`}>
@@ -214,6 +239,8 @@ function CalendarView({ events, language, getGameByCode }: { events: any[], lang
                             <div className="day-events">
                                 {dayEvents.map(event => {
                                     const game = getGameByCode(event.game_code);
+                                    const eventDate = new Date(event.date);
+                                    const eventTime = eventDate.toLocaleTimeString(language, { hour: '2-digit', minute: '2-digit' });
                                     return (
                                         <div 
                                             key={event.id} 
@@ -221,8 +248,11 @@ function CalendarView({ events, language, getGameByCode }: { events: any[], lang
                                             style={{ '--game-color': game?.color || '#666' } as React.CSSProperties}
                                             title={`${event.title} - ${game?.name || event.game_code}`}
                                         >
-                                            <span className="event-dot"></span>
-                                            <span className="event-name">{game?.name || event.game_code}</span>
+                                            <div className="event-header">
+                                                <span className="event-time">{eventTime}</span>
+                                                <span className="event-game-tag">{game?.name || event.game_code}</span>
+                                            </div>
+                                            <div className="event-title">{event.title}</div>
                                         </div>
                                     );
                                 })}
@@ -235,7 +265,7 @@ function CalendarView({ events, language, getGameByCode }: { events: any[], lang
     );
 }
 
-function ListView({ events, language, getGameByCode }: { events: any[], language: string, getGameByCode: any }) {
+function ListView({ events, language, getGameByCode }: { events: Event[], language: string, getGameByCode: (code: string) => Game | undefined }) {
     if (events.length === 0) {
         return <p className="no-events">Aucun événement prévu prochainement.</p>;
     }
@@ -245,10 +275,13 @@ function ListView({ events, language, getGameByCode }: { events: any[], language
             {events.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()).map(event => {
                 const game = getGameByCode(event.game_code);
                 const eventDate = new Date(event.date);
+                const weekday = eventDate.toLocaleString(language, { weekday: 'short' });
+                const formattedWeekday = weekday.charAt(0).toUpperCase() + weekday.slice(1).replace('.', '');
                 
                 return (
                     <div key={event.id} className="event-item-detailed" style={{ '--game-color': game?.color || '#666' } as React.CSSProperties}>
                         <div className="event-date-box">
+                            <span className="weekday">{formattedWeekday}</span>
                             <span className="day">{eventDate.getDate()}</span>
                             <span className="month">{eventDate.toLocaleString(language, { month: 'short' }).replace('.', '')}</span>
                         </div>

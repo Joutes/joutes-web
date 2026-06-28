@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Lineicons } from '@lineiconshq/react-lineicons';
 import {
-    ArrowLeftOutlined,
     Globe1Outlined,
     DiscordOutlined,
     Book1Outlined,
@@ -16,6 +15,9 @@ import type { Game } from '@/types/game';
 import { useTranslation } from '@/hooks/useTranslation';
 import SectionLoader from '@/components/SectionLoader/SectionLoader';
 import ErrorPage from '@/pages/ErrorPages/ErrorPage';
+import Banner from '@/components/Banner/Banner';
+import InfoSection from '@/components/InfoSection/InfoSection';
+import InfoItem from '@/components/InfoSection/InfoItem';
 import './GameDetailsPage.scss';
 
 export default function GameDetailsPage() {
@@ -69,18 +71,15 @@ export default function GameDetailsPage() {
     }
 
     return (
-        <div className="game-details-page" style={{ '--game-color': game.color } as React.CSSProperties}>
-            <div className="game-banner" style={{ backgroundImage: `url(${game.images.banner})` }}>
-                <div className="game-overlay">
-                    <button onClick={() => navigate('/games')} className="back-btn" title={t.notfound.back_home}>
-                        <Lineicons icon={ArrowLeftOutlined} />
-                    </button>
-                    <div className="game-content">
-                        <img src={game.images.icon} alt="" className="game-icon" />
-                        <h1 className="game-title">{game.name}</h1>
-                    </div>
-                </div>
-            </div>
+        <div className="game-details-page" style={{ '--game-color': game.color, '--banner-color': game.color } as React.CSSProperties}>
+            <Banner 
+                backgroundImage={game.images.banner}
+                iconImage={game.images.icon}
+                title={game.name}
+                onBack={() => navigate('/games')}
+                backLabel={t.notfound.back_home}
+                color={game.color}
+            />
 
             <div className="content-container">
                 <div className="main-content">
@@ -125,47 +124,38 @@ export default function GameDetailsPage() {
                 </div>
 
                 <aside className="game-sidebar">
-                    <div className="sidebar-section metadata-section">
-                        <h3>{t.gameDetails.information}</h3>
-                        <div className="metadata-list">
-                            {game.metadata?.publisher && (
-                                <div className="meta-item">
-                                    <Lineicons icon={Buildings1Outlined} />
-                                    <span>{game.metadata.publisher}</span>
-                                </div>
-                            )}
-                            {game.metadata?.release_date && (
-                                <div className="meta-item">
-                                    <Lineicons icon={CalendarDaysOutlined} />
-                                    <span>
-                                        {language === 'fr'
-                                            ? new Date(game.metadata.release_date).toLocaleDateString('fr-FR')
-                                            : new Date(game.metadata.release_date).toISOString().split('T')[0]}
-                                    </span>
-                                </div>
-                            )}
-                            {game.metadata?.players && (
-                                <div className="meta-item">
-                                    <Lineicons icon={User4Outlined} />
-                                    <span>
-                                        {t.gameDetails.players
-                                            .replace('{min}', String(game.metadata.players.min))
-                                            .replace('{max}', String(game.metadata.players.max))}
-                                    </span>
-                                </div>
-                            )}
-                            {game.metadata?.playing_time_minutes && (
-                                <div className="meta-item">
-                                    <Lineicons icon={Alarm1Outlined} />
-                                    <span>
-                                        {t.gameDetails.playing_time
-                                            .replace('{min}', String(game.metadata.playing_time_minutes.min))
-                                            .replace('{max}', String(game.metadata.playing_time_minutes.max))}
-                                    </span>
-                                </div>
-                            )}
-                        </div>
-                    </div>
+                    <InfoSection title={t.gameDetails.information}>
+                        {game.metadata?.publisher && (
+                            <InfoItem label={t.gameDetails.infos.publisher} icon={Buildings1Outlined} value={game.metadata.publisher} />
+                        )}
+                        {game.metadata?.release_date && (
+                            <InfoItem
+                                label={t.gameDetails.infos.date}
+                                icon={CalendarDaysOutlined} 
+                                value={language === 'fr'
+                                    ? new Date(game.metadata.release_date).toLocaleDateString('fr-FR')
+                                    : new Date(game.metadata.release_date).toISOString().split('T')[0]} 
+                            />
+                        )}
+                        {game.metadata?.players && (
+                            <InfoItem
+                                label={t.gameDetails.infos.players}
+                                icon={User4Outlined} 
+                                value={t.gameDetails.players
+                                    .replace('{min}', String(game.metadata.players.min))
+                                    .replace('{max}', String(game.metadata.players.max))} 
+                            />
+                        )}
+                        {game.metadata?.playing_time_minutes && (
+                            <InfoItem
+                                label={t.gameDetails.infos.duration}
+                                icon={Alarm1Outlined} 
+                                value={t.gameDetails.playing_time
+                                    .replace('{min}', String(game.metadata.playing_time_minutes.min))
+                                    .replace('{max}', String(game.metadata.playing_time_minutes.max))} 
+                            />
+                        )}
+                    </InfoSection>
 
                     {game.links && (
                         <div className="sidebar-section links-section">

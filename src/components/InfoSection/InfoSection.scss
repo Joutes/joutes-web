@@ -1,0 +1,87 @@
+@use "sass:color";
+@use "@/styles/variables" as *;
+
+.generic-info-section {
+    background: color.adjust($background-color, $lightness: 3%);
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255,255,255,0.05);
+
+    h3 {
+        font-size: 22px;
+        margin-top: 0;
+        margin-bottom: 20px;
+        color: $text-color;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .info-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+
+            .icon-wrapper {
+                width: 40px;
+                height: 40px;
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+                transition: all 0.3s ease;
+
+                i {
+                    font-size: 20px;
+                    color: var(--banner-color, $primary-color);
+                }
+            }
+
+            .info-text {
+                h3 {
+                    font-size: 14px;
+                    margin: 0 0 5px 0;
+                    color: rgba($text-color, 0.5);
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    border: none;
+                    padding: 0;
+                }
+
+                .info-value {
+                    font-size: 16px;
+                    color: rgba($text-color, 0.9);
+                    line-height: 1.4;
+
+                    a {
+                        color: var(--banner-color, $primary-color);
+                        text-decoration: none;
+                        transition: color 0.2s ease;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+
+                    p {
+                        margin: 0;
+                    }
+                }
+            }
+
+            &:hover {
+                .icon-wrapper {
+                    background: rgba(255, 255, 255, 0.1);
+                    transform: scale(1.05);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,88 @@
+@use "@/styles/variables" as *;
+@use "@/styles/fonts" as *;
+
+.generic-banner {
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    margin-bottom: 30px;
+
+    .banner-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, $background-color 100%);
+        display: flex;
+        flex-direction: column;
+        padding: 40px;
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            margin-bottom: auto;
+
+            &:hover {
+                background: var(--banner-color, $primary-color);
+                transform: translateX(-5px);
+            }
+        }
+
+        .banner-content {
+            display: flex;
+            align-items: flex-end;
+            gap: 30px;
+
+            .banner-icon {
+                width: 100px;
+                height: 100px;
+                border-radius: 20px;
+                background: white;
+                padding: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+                object-fit: contain;
+            }
+
+            .banner-title {
+                font-family: $font-title;
+                font-size: 48px;
+                margin: 0;
+                color: white;
+                text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .generic-banner {
+        height: 300px;
+        
+        .banner-overlay {
+            padding: 20px;
+            
+            .banner-content {
+                gap: 15px;
+                
+                .banner-icon {
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 12px;
+                }
+                
+                .banner-title {
+                    font-size: 32px;
+                }
+            }
+        }
+    }
+}
